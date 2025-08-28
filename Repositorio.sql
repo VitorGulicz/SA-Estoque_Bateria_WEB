@@ -20,8 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `senai_login`
 --
-CREATE DATABASE IF NOT EXISTS `senai_login` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `senai_login`;
+CREATE DATABASE IF NOT EXISTS `trabalho_sa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `trabalho_sa`;
 
 -- --------------------------------------------------------
 
