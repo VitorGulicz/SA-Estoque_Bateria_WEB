@@ -14,8 +14,12 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
 
     if($usuario && password_verify($senha,$usuario['senha'])){
         //LOGIN BEM SUCEDIDO, DEFINE VARIAVEIS DE SESSÃO
+<<<<<<< Updated upstream
         $_SESSION['usuario'] = $usuario['usuarioo'];
         
+=======
+        $_SESSION['usuario'] = $usuario['usuario'];
+>>>>>>> Stashed changes
         $_SESSION['COD_USER'] = $usuario['COD_USER'];
 
         // VERIFICA SE A SENHA É TEMPORARIA
