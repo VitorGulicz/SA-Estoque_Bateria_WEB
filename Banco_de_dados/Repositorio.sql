@@ -88,7 +88,6 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `dataDeContratacao` date DEFAULT NULL,
   `cargo` varchar(50) DEFAULT NULL,
   `salario` decimal(10,2) DEFAULT NULL,
-  `endereco_funcionario` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_funcionario`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
