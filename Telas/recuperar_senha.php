@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar a senha</title>
-    <link rel="stylesheet" href="CSS\styles.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 <body>
     <h2>Recuperar senha</h2>
