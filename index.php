@@ -3,22 +3,20 @@ session_start();
 require 'conexao.php';
 
 if($_SERVER["REQUEST_METHOD"] =="POST"){
-    $usuario = $_POST['usuario'];
+    $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM usuario WHERE usuario=:usuario";
+    $sql = "SELECT * FROM usuario WHERE email=:email";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':usuario',$usuario);
+    $stmt->bindParam(':email',$email);
     $stmt->execute();
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($usuario && password_verify($senha,$usuario['senha'])){
         //LOGIN BEM SUCEDIDO, DEFINE VARIAVEIS DE SESSÃO
-
-    
-        $_SESSION['usuario'] = $usuario['usuario'];
-
-        $_SESSION['COD_USER'] = $usuario['COD_USER'];
+        $_SESSION['usuario'] = $usuario['nome'];
+        $_SESSION['perfil'] = $usuario['id_perfil'];
+        $_SESSION['id_usuario'] = $usuario['id_usuario'];
 
         // VERIFICA SE A SENHA É TEMPORARIA
         if($usuario['senha_temporaria']){
@@ -49,11 +47,11 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
 <body>
     <h2>Login:</h2>
     <form action="index.php" method="POST">
-        <label for="usuario">Usuario</label>
-        <input type="text" id="usuario" name="usuario" required>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required>
         </br>
 
-        <label for="senha">Senha</label>
+        <label for="email">Senha</label>
         <input type="password" id="senha" name="senha" required>
         </br>
 
