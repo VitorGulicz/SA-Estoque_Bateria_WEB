@@ -41,8 +41,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Usuario</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="tabela.css">
+    <link rel="stylesheet" href="CSS\styles.css">
+    <link rel="stylesheet" href="CSS\tabela.css">
 </head>
 <body>
     <h2>Excluir Usuario</h2>

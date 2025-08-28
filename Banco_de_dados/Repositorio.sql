@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `id_cliente` int NOT NULL AUTO_INCREMENT,
   `nome_cliente` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `endereco_cliente` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endereco` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `cpf` varchar(50) DEFAULT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `id_fornecedor` int NOT NULL AUTO_INCREMENT,
   `nome_fornecedor` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cnpj` varchar(18) DEFAULT NULL,
-  `endereco_fornecedor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endereco` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contato` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

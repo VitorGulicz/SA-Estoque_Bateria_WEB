@@ -36,9 +36,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Usuario</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="mascara.js"></script>
-    <link rel="stylesheet" href="tabela.css">
+    <link rel="stylesheet" href="CSS\styles.css">
+    <script src="JS\mascara.js"></script>
+    <link rel="stylesheet" href="CSS\tabela.css">
 </head>
 <body>
     <h2>Cadastrar Usuario</h2>
