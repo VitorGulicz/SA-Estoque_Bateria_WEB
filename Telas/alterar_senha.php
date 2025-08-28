@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         senha2.type=tipo;
     }
     
-    <adress><h2>Vitor Gulicz | Senai Norte </h2></adress>
+
 </script>
 </body>
 </html>
