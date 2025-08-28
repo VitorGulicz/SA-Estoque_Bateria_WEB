@@ -113,12 +113,10 @@ DROP TABLE IF EXISTS `fornecedor`;
 CREATE TABLE `fornecedor` (
   `idfornecedor` int NOT NULL AUTO_INCREMENT,
   `fornecedores` varchar(100) DEFAULT NULL,
-  `cpf` varchar(18) DEFAULT NULL,
+  `cnpj` varchar(18) DEFAULT NULL,
   `telefone` varchar(15) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `endereco` varchar(100) DEFAULT NULL,
-  `produto` varchar(100) DEFAULT NULL,
-  `quantidade` int DEFAULT NULL,
   PRIMARY KEY (`idfornecedor`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -167,9 +165,10 @@ CREATE TABLE `produto` (
   `tipo` varchar(50) DEFAULT NULL,
   `voltagem` varchar(10) DEFAULT NULL,
   `marca` varchar(50) DEFAULT NULL,
-  `quantidade` int DEFAULT NULL,
+   `marca` varchar(244) DEFAULT NULL,
+  `qtde` int DEFAULT NULL,
   `preco` decimal(10,2) DEFAULT NULL,
-  `data` date DEFAULT NULL,
+  `validade` date DEFAULT NULL,
   PRIMARY KEY (`idproduto`),
   KEY `fk_produto_idfornecedor` (`idfornecedor`),
   CONSTRAINT `fk_produto_idfornecedor` FOREIGN KEY (`idfornecedor`) REFERENCES `fornecedor` (`idfornecedor`)on delete cascade
