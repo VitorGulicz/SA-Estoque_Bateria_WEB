@@ -33,22 +33,19 @@ DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE IF NOT EXISTS `cliente` (
   `id_cliente` int NOT NULL AUTO_INCREMENT,
   `nome_cliente` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `endereco` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endereco_cliente` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
     `cpf` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
-  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nome_cliente`, `endereco`, `telefone`, `email`, `id_funcionario_responsavel`) VALUES
-(2, 'Teresa Lisbon', 'Rua California', '(47)1234-4568', 'teresa@teresa', NULL),
-(3, 'Chefe Bolden', 'Rua dos Bombeiros, 123', '(99)1234-4321', 'bolden@bolden', NULL),
-(4, 'Capitão Hermann', 'Rua do Molys, 123', '(21)6547-7854', 'hermann@hermann', NULL);
+
 
 -- --------------------------------------------------------
 
@@ -61,24 +58,18 @@ CREATE TABLE IF NOT EXISTS `fornecedor` (
   `id_fornecedor` int NOT NULL AUTO_INCREMENT,
   `nome_fornecedor` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cnpj` varchar(18) DEFAULT NULL,
-  `endereco` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `endereco_fornecedor` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contato` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_fornecedor`),
-  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `fornecedor`
 --
 
-INSERT INTO `fornecedor` (`id_fornecedor`, `nome_fornecedor`, `endereco`, `telefone`, `email`, `contato`, `id_funcionario_registro`) VALUES
-(1, 'Tech Supplies', 'Av. Paulista, 1000', '11912345678', 'contato@techsupplies.com', 'José Silva', NULL),
-(2, 'Gamer Store', 'Rua dos Gamers, 200', '21912345678', 'contato@gamerstore.com', 'Marcos Souza', NULL),
-(3, 'Eletrônicos BR', 'Av. Brasil, 300', '31912345678', 'contato@eletronicosbr.com', 'Fernanda Lima', NULL),
-(4, 'InfoTech', 'Rua da Tecnologia, 400', '41912345678', 'contato@infotech.com', 'Carlos Mendes', NULL),
-(5, 'Bombeiros Fire Ltda', 'Rua Chicago 214', '(78)8521-1254', 'fire@fire', 'Dick Wolf', NULL);
 
 -- --------------------------------------------------------
 
@@ -97,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `dataDeContratacao` date DEFAULT NULL,
   `cargo` varchar(50) DEFAULT NULL,
   `salario` decimal(10,2) DEFAULT NULL,
-  `endereco` varchar(100) DEFAULT NULL,
+  `endereco_funcionario` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_funcionario`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -106,12 +97,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`id_funcionario`, `nome_funcionario`, `endereco`, `telefone`, `email`) VALUES
-(1, 'João Silva', 'Rua X, 500', '11955555555', 'joao@email.com'),
-(2, 'Mariana Oliveira', 'Rua Y, 600', '21966666666', 'mariana@email.com'),
-(3, 'Roberto Santos', 'Rua Z, 700', '31977777777', 'roberto@email.com'),
-(4, 'Camila Ferreira', 'Rua W, 800', '41988888888', 'camila@email.com'),
-(5, 'Jesse Pinkman', 'Rua Novo Mexico, 171', '2132145874', 'jesse@jesse.com');
+
 
 -- --------------------------------------------------------
 
@@ -145,8 +131,8 @@ INSERT INTO `perfil` (`id_perfil`, `nome_perfil`) VALUES
 
 DROP TABLE IF EXISTS `produto`;
 CREATE TABLE IF NOT EXISTS `produto` (
-  `idproduto` int NOT NULL AUTO_INCREMENT,
-  `idfornecedor` int NOT NULL,
+  `id_produto` int NOT NULL AUTO_INCREMENT,
+  `id_fornecedor` int NOT NULL,
   `tipo` varchar(50) DEFAULT NULL,
   `voltagem` varchar(10) DEFAULT NULL,
   `descricao` text COLLATE utf8mb4_unicode_ci,
@@ -154,9 +140,9 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `qtde` int DEFAULT NULL,
   `preco` decimal(10,2) DEFAULT NULL,
   `validade` date DEFAULT NULL,
-  PRIMARY KEY (`idproduto`),
-  KEY `fk_produto_idfornecedor` (`idfornecedor`),
-  CONSTRAINT `fk_produto_idfornecedor` FOREIGN KEY (`idfornecedor`) REFERENCES `fornecedor` (`idfornecedor`)on delete cascade
+  PRIMARY KEY (`id_produto`),
+  KEY `fk_produto_id_fornecedor` (`id_fornecedor`),
+  CONSTRAINT `fk_produto_id_fornecedor` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)on delete cascade
 
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -164,12 +150,6 @@ CREATE TABLE IF NOT EXISTS `produto` (
 -- Despejando dados para a tabela `produto`
 --
 
-INSERT INTO `produto` (`id_produto`, `nome_prod`, `descricao`, `qtde`, `valor_unit`) VALUES
-(1, 'Notebook Dell', 'Intel i7, 16GB RAM, SSD 512GB', 10, 4500.00),
-(2, 'Mouse Gamer', 'RGB, 16000 DPI', 50, 150.00),
-(3, 'Teclado Mecânico', 'Switch Azul, RGB', 30, 300.00),
-(4, 'Monitor 24\"', 'Full HD, 75Hz', 20, 800.00),
-(5, 'Extintor', 'A base de CO2', 17, 78.23);
 
 -- --------------------------------------------------------
 --
@@ -183,10 +163,10 @@ CREATE TABLE compra(
     cod_funcionario INTEGER NOT NULL,
     quantidade INTEGER NOT NULL,
     cod_fornecedor INTEGER NOT NULL,
-    FOREIGN KEY (cod_cliente) REFERENCES cliente(idcliente) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (cod_produto) REFERENCES produto(idproduto) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (cod_funcionario) REFERENCES funcionario(idfuncionario) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (cod_fornecedor) REFERENCES fornecedor(idfornecedor) ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (cod_cliente) REFERENCES cliente(id_cliente) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (cod_produto) REFERENCES produto(id_produto) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (cod_funcionario) REFERENCES funcionario(id_funcionario) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (cod_fornecedor) REFERENCES fornecedor(id_fornecedor) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 --
@@ -220,23 +200,7 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `id_perfil`, `sen
 (12, 'Grace Van Pelt', '$2y$10$g5h1LI20ufnY/p6062h5r.ezKU7eFlhhwRCSkuKTJiYUYulPIQjxq', 'grace@grace', 4, 0),
 (13, 'Xavier', '$2y$10$ErMocH1x.avm4asmRnKzeOUF30fi4ZO33C/9H6D2opvlFZ6zEorR.', 'xavier@xavier', 1, 0);
 
---
--- Restrições para tabelas despejadas
---
 
---
--- Restrições para tabelas `cliente`
---
-ALTER TABLE `cliente`
-  ADD CONSTRAINT `fk_cliente_funcionario` FOREIGN KEY (`id_funcionario_responsavel`) REFERENCES `funcionario` (`id_funcionario`) ON DELETE SET NULL;
-
---
--- Restrições para tabelas `fornecedor`
---
-ALTER TABLE `fornecedor`
-  ADD CONSTRAINT `fk_fornecedor_funcionario` FOREIGN KEY (`id_funcionario_registro`) REFERENCES `funcionario` (`id_funcionario`) ON DELETE SET NULL;
-
---
 
 --
 -- Restrições para tabelas `usuario`
