@@ -237,11 +237,6 @@ ALTER TABLE `fornecedor`
   ADD CONSTRAINT `fk_fornecedor_funcionario` FOREIGN KEY (`id_funcionario_registro`) REFERENCES `funcionario` (`id_funcionario`) ON DELETE SET NULL;
 
 --
--- Restrições para tabelas `fornecedor_produto`
---
-ALTER TABLE `fornecedor_produto`
-  ADD CONSTRAINT `fornecedor_produto_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fornecedor_produto_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`) ON DELETE CASCADE;
 
 --
 -- Restrições para tabelas `usuario`
