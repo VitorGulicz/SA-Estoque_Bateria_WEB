@@ -28,7 +28,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt->execute();
 
     // Se não encontrar o usuário, exibe um alerta
-    if ($stmt->execute()) {
+    if ($stmt->rowCount() > 0) {
         echo "<script>alert('Funcionario excluído com sucesso!');window.location.href='excluir_funcionario.php';</script>";
     } else {
         echo "<script>alert('Erro ao excluir funcionario.');</script>";
@@ -42,93 +42,207 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excluir Funcionário</title>
+    <title>🔋 Excluir Funcionário - AutoBat Pro</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f6fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             margin: 0;
             padding: 20px;
             text-align: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Adicionado header com tema automotivo */
+        .header-container {
+            background: linear-gradient(45deg, #000000, #FFD700, #DC143C);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
         }
 
         h2 {
-            margin-bottom: 20px;
-            color: #2c3e50;
+            margin: 0;
+            color: #000;
+            font-size: 2.2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
         }
 
+        .subtitle {
+            color: #000;
+            font-size: 1.1em;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* Estilização da tabela com tema automotivo */
         table {
             margin: 0 auto;
             border-collapse: collapse;
-            width: 90%;
-            background: #fff;
-            border-radius: 10px;
+            width: 95%;
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            border: 2px solid #FFD700;
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 15px 12px;
             text-align: center;
+            border-bottom: 1px solid #444;
         }
 
         th {
-            background-color: #3498db; /* mesma cor da primeira tabela */
-            color: white;
+            background: linear-gradient(45deg, #000000, #FFD700, #DC143C);
+            color: #000;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+            position: relative;
         }
 
+        /* Ícones temáticos para cada coluna */
+        th:nth-child(1)::before { content: "🆔 "; }
+        th:nth-child(2)::before { content: "👤 "; }
+        th:nth-child(3)::before { content: "📄 "; }
+        th:nth-child(4)::before { content: "🏠 "; }
+        th:nth-child(5)::before { content: "📞 "; }
+        th:nth-child(6)::before { content: "📧 "; }
+        th:nth-child(7)::before { content: "📅 "; }
+        th:nth-child(8)::before { content: "🔧 "; }
+        th:nth-child(9)::before { content: "💰 "; }
+        th:nth-child(10)::before { content: "⚡ "; }
+
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background: linear-gradient(90deg, #2a2a2a, #333333);
+        }
+
+        tr:nth-child(odd) {
+            background: linear-gradient(90deg, #1e1e1e, #2a2a2a);
         }
 
         tr:hover {
-            background-color: #dff9fb; /* hover azul claro */
-            transition: 0.3s;
+            background: linear-gradient(90deg, #FFD700, #FFA500) !important;
+            color: #000 !important;
+            transform: scale(1.02);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
         }
 
         td {
-            color: #2c3e50;
+            color: #fff;
+            font-weight: 500;
         }
 
+        /* Botão de exclusão com tema automotivo */
         a.delete-btn {
-            padding: 5px 10px;
-            border-radius: 6px;
+            padding: 8px 15px;
+            border-radius: 8px;
             text-decoration: none;
-            color: white;
-            background-color: #e74c3c; /* vermelho para excluir */
+            color: #fff;
+            background: linear-gradient(45deg, #DC143C, #8B0000);
             font-size: 13px;
+            font-weight: bold;
             margin: 0 2px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid #DC143C;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        a.delete-btn::before {
+            content: "🗑️ ";
         }
 
         a.delete-btn:hover {
-            background-color: #c0392b;
+            background: linear-gradient(45deg, #FF0000, #DC143C);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+            border-color: #FF0000;
         }
 
+        /* Mensagem quando não há funcionários */
         p {
-            color: #555;
-            font-size: 16px;
+            color: #FFD700;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #FFD700;
+            margin: 20px auto;
+            max-width: 500px;
         }
 
+        p::before {
+            content: "⚠️ ";
+            font-size: 24px;
+        }
+
+        /* Botão voltar com tema automotivo */
         a.back-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 6px 12px;
-            border-radius: 6px;
+            margin-top: 30px;
+            padding: 12px 25px;
+            border-radius: 10px;
             text-decoration: none;
-            background-color: #3498db; /* azul da primeira tabela */
-            color: white;
+            background: linear-gradient(45deg, #000000, #FFD700);
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid #FFD700;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+        }
+
+        a.back-btn::before {
+            content: "🔙 ";
         }
 
         a.back-btn:hover {
-            background-color: #2980b9;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
         }
 
+        /* Efeitos visuais adicionais */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+
+        .header-container {
+            animation: pulse 3s infinite;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            table {
+                font-size: 12px;
+                width: 100%;
+            }
+            
+            th, td {
+                padding: 8px 4px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+        }
     </style>
 </head>
 <body>
-    <h2>Excluir Funcionário</h2>
+    <div class="header-container">
+        <h2>🔋 Excluir Funcionário</h2>
+        <div class="subtitle">⚡ AutoBat Pro - Sistema de Gestão ⚡</div>
+    </div>
 
     <?php if(!empty($usuarios)): ?>
         <table>
@@ -149,7 +263,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <tbody>
                 <?php foreach ($usuarios as $usuario): ?>
                     <tr>
-                    <td><?=htmlspecialchars($usuario['id_funcionario']); ?></td>
+                        <td><?=htmlspecialchars($usuario['id_funcionario']); ?></td>
                         <td><?=htmlspecialchars($usuario['nome_funcionario']); ?></td>
                         <td><?=htmlspecialchars($usuario['cpf']); ?></td>
                         <td><?=htmlspecialchars($usuario['endereco']); ?></td>
@@ -166,10 +280,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             </tbody>
         </table>
     <?php else: ?>
-        <p>Nenhum funcionário encontrado.</p>
+        <p>Nenhum funcionário encontrado no sistema.</p>
     <?php endif; ?>
 
-    <a href="principal.php" class="back-btn">Voltar</a>
+    <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 
 </body>
 </html>
