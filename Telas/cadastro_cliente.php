@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 </head>
 <body>
     <h2>Cadastrar Fornecedor</h2>
-    <form action="cadastro_fornecedor.php" method="POST">
+    <form action="cadastro_cliente.php" method="POST">
 
         <label for="nome_cliente">Nome do Cliente: </label>
         <input type="text" id="nome_cliente" name="nome_cliente" required onkeypress="mascara(this,nome1)">
