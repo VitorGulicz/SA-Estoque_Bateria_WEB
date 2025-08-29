@@ -6,15 +6,23 @@ require_once 'conexao.php';
 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
     $nome = $_POST['nome2'];
+    $cpf = $_POST['cpf'];
     $endereco = $_POST['endereco'];
     $telefone = $_POST['telefone2'];
     $email = $_POST['email'];
-    $sql = "INSERT INTO funcionario (nome_funcionario, endereco, telefone, email) VALUES (:nome_funcionario, :endereco, :telefone, :email)";
+    $data = $_POST['data'];
+    $cargo = $_POST['cargo'];
+    $salario = $_POST['salario'];
+    $sql = "INSERT INTO funcionario (nome_funcionario, cpf, endereco, telefone, email, dataDeContratacao, cargo, salario) VALUES (:nome_funcionario, :cpf, :endereco, :telefone, :email, :dataDeContratacao, :cargo, :salario)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome_funcionario', $nome);
+    $stmt->bindParam(':cpf', $cpf);
     $stmt->bindParam(':endereco', $endereco);
     $stmt->bindParam(':telefone', $telefone);
     $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':dataDeContratacao', $data);
+    $stmt->bindParam(':cargo', $cargo);
+    $stmt->bindParam(':salario', $salario);
 
     if($stmt->execute()) {
         echo "<script>alert('Funcionario cadastrado com sucesso!');</script>";
@@ -70,16 +78,16 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
 
         <label for="nome">Nome:</label>
-        <input type="text" id="nome2" name="nome2" required onkeypress ="mascara(this, nome)">
+        <input type="text" id="nome2" name="nome2" required onkeypress ="mascara(this, nome1)">
 
         <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" required>
+        <input type="text" id="cpf" name="cpf" required maxlength="14" onkeypress ="mascara(this, mascaraCPF)">
 
         <label for="endereco">Endereço:</label>
         <input type="text" id="endereco" name="endereco" required>
         
         <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone2" name="telefone2" required onkeypress ="mascara(this, telefone1)" maxlength="15">
+        <input type="text" id="telefone2" name="telefone2" required onkeypress ="mascara(this, mascaraTelefone)" maxlength="15">
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
@@ -90,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         <label for="cargo">Cargo:</label>
         <input type="text" id="cargo" name="cargo" required>
 
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" required>
+        <label for="salario">Salario:</label>
+        <input type="number" id="salario" name="salario" required>
         
         
         <button type="submit">Cadastrar</button>
