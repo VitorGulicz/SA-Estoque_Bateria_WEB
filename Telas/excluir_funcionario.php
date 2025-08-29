@@ -97,13 +97,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         }
 
         th {
-            background: linear-gradient(45deg, #000000, #FFD700, #DC143C);
-            color: #000;
-            text-transform: uppercase;
-            font-size: 13px;
+            background: linear-gradient(145deg, #FFD700, #FFA500);
+            color: #1a1a1a;
+            padding: 15px 12px;
+            text-align: center;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
-            position: relative;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #FF4444;
         }
 
         /* Ícones temáticos para cada coluna */
@@ -185,19 +187,18 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         }
 
         /* Botão voltar com tema automotivo */
-        a.back-btn {
+        .back-btn {
             display: inline-block;
             margin-top: 30px;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border-radius: 10px;
             text-decoration: none;
-            background: linear-gradient(45deg, #000000, #FFD700);
-            color: #000;
+            background: linear-gradient(145deg, #333333, #2a2a2a);
+            color: #FFD700;
             font-weight: bold;
-            font-size: 16px;
-            transition: all 0.3s ease;
             border: 2px solid #FFD700;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            font-size: 16px;
         }
 
         a.back-btn::before {
@@ -283,7 +284,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         <p>Nenhum funcionário encontrado no sistema.</p>
     <?php endif; ?>
 
-    <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+    <a href="principal.php" class="back-btn">🏠 Voltar ao Menu Principal</a>
 
 </body>
 </html>

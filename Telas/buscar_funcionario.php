@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'conexao.php';
+require_once 'menudrop.php';
 
 // Verifica se a conexão com o banco de dados foi estabelecida
 if (!isset($pdo) || !$pdo) {

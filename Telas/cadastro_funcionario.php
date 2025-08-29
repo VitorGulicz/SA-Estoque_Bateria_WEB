@@ -184,20 +184,18 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
             content: '🔄 ';
         }
 
-        a.back-btn {
+        .back-btn {
             display: inline-block;
             margin-top: 30px;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 15px 30px;
+            border-radius: 10px;
             text-decoration: none;
-            background: linear-gradient(145deg, #ffc107, #e0a800);
-            color: #1a1a1a;
+            background: linear-gradient(145deg, #333333, #2a2a2a);
+            color: #FFD700;
             font-weight: bold;
-            font-size: 1.1em;
+            border: 2px solid #FFD700;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            font-size: 16px;
         }
 
         a.back-btn:hover {
@@ -207,7 +205,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         }
 
         a.back-btn::before {
-            content: '🚗 ';
+            content: ' ';
             margin-right: 8px;
         }
 
@@ -263,6 +261,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         <button type="submit">Cadastrar</button>
         <button type="reset">Cancelar</button>
     </form>
-    <a href="principal.php" class="back-btn">Voltar</a>
+    <a href="principal.php" class="back-btn">🏠 Voltar ao Menu Principal</a>
 </body>
 </html>

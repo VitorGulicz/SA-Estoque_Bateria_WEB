@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         h2::after {
-            content: " ⚡";
+            content: " ⚡ ";
             -webkit-text-fill-color: #FF4444;
         }
 
@@ -200,8 +200,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
         }
 
-        button[type="submit"]::before {
-            content: "⚡ ";
+        button[type="submit"]::after {
+            content: " ⚡ ";
         }
 
         button[type="reset"] {
@@ -209,26 +209,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white;
         }
 
-        button[type="reset"]::before {
-            content: "🔄 ";
+        button[type="reset"]::after {
+            content: " 🔄 ";
         }
 
-        a.back-btn {
+        .back-btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            border-radius: 8px;
+            margin-top: 30px;
+            padding: 15px 30px;
+            border-radius: 10px;
             text-decoration: none;
-            background: linear-gradient(45deg, #666, #444);
-            color: white;
+            background: linear-gradient(145deg, #333333, #2a2a2a);
+            color: #FFD700;
             font-weight: bold;
+            border: 2px solid #FFD700;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 16px;
         }
 
         a.back-btn::before {
-            content: "🏠 ";
+            content: "";
             margin-right: 5px;
         }
 
@@ -323,7 +323,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="reset">Cancelar</button>
                 </form>
         <?php endif; ?>
-        <a href="principal.php" class="back-btn">Voltar</a>
+        <a href="principal.php" class="back-btn">🏠 Voltar ao Menu Principal</a>
 </div>
     
 </body>
