@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alterar Funcionario - AutoBaterias Pro</title>
+    <title>Alterar Funcionario - VGM POWER</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Certifique-se de que o Javascript está sendo carregado com sucesso -->
     <script src="scripts.js"></script>

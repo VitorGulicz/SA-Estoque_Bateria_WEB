@@ -39,7 +39,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔋 AutoBat - Buscar Funcionário</title>
+    <title>🔋 VGM Power - Buscar Funcionário</title>
     <style>
         /* Aplicando tema automotivo completo com cores de bateria */
         body {
