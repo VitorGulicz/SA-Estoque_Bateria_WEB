@@ -39,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <link rel="stylesheet" href="../CSS/styles.css">
     <script src="../JS/mascara.js"></script>
     <link rel="stylesheet" href="../CSS/tabela.css">
-        
+
 <style>
     /* Aplicando tema de loja de bateria automotiva */
         body {
@@ -76,12 +76,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         }
 
         h2::before {
-            content: '🔋 ';
+            content: '👤 ';
             margin-right: 10px;
         }
 
         h2::after {
-            content: ' ⚡';
+            content: ' 🔋';
             margin-left: 10px;
         }
 
@@ -106,15 +106,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             font-size: 1.1em;
         }
 
-        label::before {
-            content: '🔧 ';
-            margin-right: 5px;
-        }
+        label[for="nome"]::before { content: '👤 '; margin-right: 5px; }
+        label[for="email"]::before { content: '📧 '; margin-right: 5px; }
+        label[for="senha"]::before { content: '🔐 '; margin-right: 5px; }
+        label[for="id_perfil"]::before { content: '🔧 '; margin-right: 5px; }
 
         input[type="text"],
         input[type="email"],
-        input[type="date"],
-        input[type="number"] {
+        input[type="password"],
+        select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #444;
@@ -128,12 +128,29 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
         input[type="text"]:focus,
         input[type="email"]:focus,
-        input[type="date"]:focus,
-        input[type="number"]:focus {
+        input[type="password"]:focus,
+        select:focus {
             border-color: #ffc107;
             box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
             outline: none;
             background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+        }
+
+        /* Styling select dropdown to match theme */
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffc107' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        select option {
+            background: #2c2c2c;
+            color: #ffffff;
+            padding: 10px;
         }
 
         button {
@@ -149,6 +166,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             letter-spacing: 1px;
         }
 
+        /* Fixed button styling for submit and reset */
         button[type="submit"] {
             background: linear-gradient(145deg, #dc3545, #c82333);
             color: white;
@@ -165,22 +183,23 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             content: '⚡ ';
         }
 
-        button[type="reset"] {
+        button.excluir {
             background: linear-gradient(145deg, #6c757d, #5a6268);
             color: white;
             box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
         }
 
-        button[type="reset"]:hover {
+        button.excluir:hover {
             background: linear-gradient(145deg, #5a6268, #495057);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
         }
 
-        button[type="reset"]::before {
-            content: '🔄 ';
+        button.excluir::before {
+            content: '❌ ';
         }
 
+        /* Enhanced back button styling */
         .back-btn {
             display: inline-block;
             margin-top: 30px;
@@ -217,7 +236,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 font-size: 2em;
             }
             
-            button, a.back-btn {
+            button, a.voltar {
                 width: 100%;
                 margin: 10px 0;
                 text-align: center;
@@ -244,10 +263,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             <option value="2">Secretaria</option>
             <option value="3">Almoxarife</option>
             <option value="4">Cliente</option>
-</select>
+        </select>
+        
         <button type="submit" class="cadastrar">Cadastrar</button>
-        <button type="submit" class="excluir">Cancelar</button>
-</form>
-    <a href="principal.php" class="voltar">Voltar</a>
-    </body>
+        <!-- Fixed button type from submit to button for cancel -->
+        <button type="button" class="excluir" onclick="document.getElementById('nome').value=''; document.getElementById('email').value=''; document.getElementById('senha').value=''; document.getElementById('id_perfil').selectedIndex=0;">Cancelar</button>
+    </form>
+    <a href="principal.php" class="back-btn">🏠 Voltar ao Menu Principal</a>
+</body>
 </html>

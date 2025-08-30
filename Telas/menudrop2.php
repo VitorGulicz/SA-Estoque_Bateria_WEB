@@ -72,7 +72,7 @@ $opcoes_menu = $permissoes[$id_perfil];
         border-bottom: 2px solid #dc3545;
         position: relative;
     ">
-        ⚡ POWER BATERIAS ⚡
+        ⚡ VGM POWER ⚡
         <div style="
             position: absolute;
             right: 20px;

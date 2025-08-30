@@ -249,10 +249,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         <input type="email" id="email" name="email" required>
 
         <label for="data">Data de contratação:</label>
-        <input type="date" id="data" name="data" required>
+        <input type="date" id="data" name="data" required >
 
         <label for="cargo">Cargo:</label>
-        <input type="text" id="cargo" name="cargo" required>
+        <input type="text" id="cargo" name="cargo" required >
 
         <label for="salario">Salario:</label>
         <input type="number" id="salario" name="salario" required>

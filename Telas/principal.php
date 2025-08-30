@@ -8,7 +8,7 @@ require_once 'menudrop2.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VGM Power - Sistema Principal</title>
+    <title>Power Baterias - Sistema Principal</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <script src="JS\scripts.js"></script>
 </head>
@@ -108,13 +108,18 @@ require_once 'menudrop2.php';
 
             <div class="logout" style="
                 margin-left: 30px;
+                background: transparent !important;
             ">
-                <!-- Estilizando o botão de logout com tema automotivo -->
-                <form action="logout.php" method="POST">
+                <!-- Removendo qualquer fundo branco e garantindo transparência -->
+                <form action="logout.php" method="POST" style="
+                    background: transparent !important;
+                    margin: 0;
+                    padding: 0;
+                ">
                     <button type="submit" style="
-                        background: linear-gradient(45deg, #6c757d, #5a6268);
-                        color: #fff;
-                        border: 3px solid #ffc107;
+                        background: linear-gradient(45deg, #6c757d, #5a6268) !important;
+                        color: #fff !important;
+                        border: 3px solid #ffc107 !important;
                         padding: 15px 25px;
                         font-size: 16px;
                         font-weight: bold;
@@ -126,6 +131,7 @@ require_once 'menudrop2.php';
                         box-shadow: 0 4px 15px rgba(0,0,0,0.2);
                         position: relative;
                         overflow: hidden;
+                        outline: none !important;
                     "
                     onmouseover="this.style.background='linear-gradient(45deg, #dc3545, #c82333)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(220,53,69,0.4)'"
                     onmouseout="this.style.background='linear-gradient(45deg, #6c757d, #5a6268)'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)'">
