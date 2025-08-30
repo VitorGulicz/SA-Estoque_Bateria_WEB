@@ -27,6 +27,7 @@ function cnpj1(variavel){
     return variavel
 }
 
+
 function data1(v) {
     v = v.replace(/\D/g, "");
     v = v.replace(/^(\d\d)(\d)/g, "$1/ $2");
@@ -141,4 +142,13 @@ var data1 = function(campo, e) {
 };
 
 
+
+
+function cpf1(variavel){
+    variavel=variavel.replace(/\D/g,"") //remove caracteres não numericos
+    variavel=variavel.replace(/(\d{3})(\d)/,"$1.$2") //adiciona ponto entre o terceiro e quarto digitos
+    variavel=variavel.replace(/(\d{3})(\d)/,"$1.$2") //adiciona ponto entre o sexto e setimo digitos
+    variavel=variavel.replace(/(\d{3})(\d)/,"$1-$2") //adiciona hífen entre o nono e décimo digitos
+    return variavel
+}
 

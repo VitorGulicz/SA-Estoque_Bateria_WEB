@@ -11,7 +11,7 @@ if($_SESSION['perfil']!= 1){
 }
 
 //INICIALIZA AS VARIAVEIS
-$usuario = null;
+$fornecedor = null;
 
 //Busca todos os fornecedor cadastrados em ordem alfabetica
 $sql="SELECT * from fornecedor order by nome_fornecedor ASC";
