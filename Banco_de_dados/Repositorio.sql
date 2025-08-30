@@ -161,6 +161,7 @@ CREATE TABLE compra(
     cod_produto INTEGER NOT NULL,
     cod_funcionario INTEGER NOT NULL,
     quantidade INTEGER NOT NULL,
+    `vlr_compra` decimal(10,2) DEFAULT NULL,
     cod_fornecedor INTEGER NOT NULL,
     FOREIGN KEY (cod_cliente) REFERENCES cliente(id_cliente) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (cod_produto) REFERENCES produto(id_produto) ON DELETE RESTRICT ON UPDATE CASCADE,
