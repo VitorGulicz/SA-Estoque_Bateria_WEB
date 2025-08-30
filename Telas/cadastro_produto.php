@@ -120,7 +120,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" id="preco" name="preco" required>
 
     <label for="validade">Validade do produto</label>
-<input type="date" id="validade" name="validade" required>
+    <input type="date" id="validade" name="validade" maxlength="10" placeholder="dd/mm/aaaa" required onkeypress="mascara(this,data1)">
+
+  
 
     <button type="submit">Salvar</button>
     <button type="reset">Cancelar</button>

@@ -27,6 +27,13 @@ function cnpj1(variavel){
     return variavel
 }
 
+function data1(v) {
+    v = v.replace(/\D/g, "");
+    v = v.replace(/^(\d\d)(\d)/g, "$1/ $2");
+    v = v.replace(/(\d{2})(\d)/, "$1/$2");
+    return v;
+}
+
 
 // mascara do max ----------------------------------------------------------------------------//
 
@@ -103,28 +110,35 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-function formatarValor(input) {
-    let valor = input.value.replace(/\D/g, ''); 
-    valor = (valor/100).toFixed(2).replace('.', ','); 
-    valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
-    input.value = valor;
-}
+// Removed duplicate definitions of formatarValor and formatarQuantidade
 
 
-function formatarQuantidade(input) {
-    input.value = input.value.replace(/\D/g, ''); 
-}
+// mascara da data de validade do prduto//
 
 
-window.addEventListener('DOMContentLoaded', () => {
-    const qtdeInput = document.getElementById('quantidade');
-    const valorInput = document.getElementById('preco');
+// mascaras.js
+var data1 = function(campo, e) {
+    var tecla = e.key;
 
-    if (qtdeInput) qtdeInput.addEventListener('keyup', () => formatarQuantidade(qtdeInput));
-    if (valorInput) valorInput.addEventListener('keyup', () => formatarValor(valorInput));
+    // Permite apenas números
+    if (!/[0-9]/.test(tecla)) {
+        e.preventDefault();
+        return;
+    }
 
-    
-    if (qtdeInput && qtdeInput.value) formatarQuantidade(qtdeInput);
-    if (valorInput && valorInput.value) formatarValor(valorInput);
-});
+    // Remove tudo que não é número
+    campo.value = campo.value.replace(/\D/g, "");
+
+    // Formata como dd/mm/aaaa
+    if (campo.value.length > 2 && campo.value.length <= 4) {
+        campo.value = campo.value.replace(/(\d{2})(\d+)/, "$1/$2");
+    } else if (campo.value.length > 4) {
+        campo.value = campo.value.replace(/(\d{2})(\d{2})(\d+)/, "$1/$2/$3");
+    }
+
+    // Limita a 10 caracteres
+    if (campo.value.length > 10) campo.value = campo.value.slice(0, 10);
+};
+
+
 
