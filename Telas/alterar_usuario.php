@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 <!--Certifique-se de que o Java script está sendo carregado corretamente-->
 <script src="../JS/scripts.js"></script>
 <script src="../JS/mascara.js"></script>
-<link rel="stylesheet" href="../CSS/tabela.css">
+<link rel="stylesheet" href="../CSS/tudo.css">
 </head>
 <body>
 <h2>Alterar Usuários</h2>

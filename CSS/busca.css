@@ -1,0 +1,132 @@
+/* Estilo principal */
+body {
+    font-family: 'Arial', sans-serif;
+    background: #1e1e1e;
+    color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #2c2c2c;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+}
+
+h2 {
+    text-align: center;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+form input {
+    padding: 10px;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    outline: none;
+    width: 200px;
+}
+
+.btn-pesquisar {
+    background: #ffc107;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-pesquisar:hover {
+    background: #e0a800;
+}
+
+/* Tabela */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+thead {
+    background: #343a40;
+    color: #ffc107;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+tbody tr:hover {
+    background: rgba(255, 193, 7, 0.1);
+}
+
+/* Botões */
+.btn-alterar {
+    color: #fff;
+    background: #28a745;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-alterar:hover {
+    background: #218838;
+}
+
+.btn-excluir {
+    color: #fff;
+    background: #dc3545;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-left: 8px;
+    transition: 0.3s;
+}
+.btn-excluir:hover {
+    background: #c82333;
+}
+
+/* Mensagem */
+.msg-vazio {
+    text-align: center;
+    color: #f8d7da;
+    background: #721c24;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+/* Voltar */
+.btn-voltar {
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+    padding: 10px 15px;
+    background: #ffc107;
+    color: #000;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+    width: fit-content;
+}
+.btn-voltar:hover {
+    background: #e0a800;
+}

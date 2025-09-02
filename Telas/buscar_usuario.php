@@ -302,13 +302,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <th><span class="header-icon">🆔</span>ID</th>
                             <th><span class="header-icon">👤</span>Nome</th>
-                            <th><span class="header-icon">📄</span>CPF</th>
-                            <th><span class="header-icon">🏠</span>Endereço</th>
-                            <th><span class="header-icon">📞</span>Telefone</th>
                             <th><span class="header-icon">📧</span>Email</th>
-                            <th><span class="header-icon">📅</span>Contratação</th>
-                            <th><span class="header-icon">🔧</span>Cargo</th>
-                            <th><span class="header-icon">💰</span>Salário</th>
+                            <th><span class="header-icon">🏠</span>ID Pefil</th>
                             <th><span class="header-icon">⚙️</span>Ações</th>
                         </tr>
 
