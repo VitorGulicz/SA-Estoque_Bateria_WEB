@@ -23,15 +23,16 @@ $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_GET['id']) && is_numeric($_GET['id'])){
     $id_fornecedor = $_GET['id'];
 
-    //Exclui o fornecedor do banco de dados
-    $sql = "DELETE FROM fornecedor WHERE id_fornecedor = :id";
-    $stmt=$pdo->prepare($sql);
-    $stmt->bindparam(':id',$id_fornecedor,PDO::PARAM_INT);
-
-    if($stmt->execute()){
-        echo "<script>alert('Fornecedor excluido com sucesso!');window.location.href='excluir_fornecedor.php';</script>";
-    }else{
-        echo "<script>alert('Erro ao excluir fornecedor!');</script>";
+    try {
+        $stmt = $pdo->prepare("DELETE FROM fornecedor WHERE id_fornecedor = :id");
+        $stmt->execute([':id' => $id_fornecedor]);
+        echo "<script>alert('Fornecedor excluído com sucesso!');window.location.href='buscar_fornecedor.php';</script>";
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
+            echo "<script>alert('Não é possível excluir este fornecedor porque há compras vinculadas a ele.');window.location.href='buscar_fornecedor.php';</script>";
+        } else {
+            echo "Erro: " . $e->getMessage();
+        }
     }
 }
 ?>

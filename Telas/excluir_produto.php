@@ -19,20 +19,27 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 // SE um id for passado via get, exclui o produto
 if(isset($_GET['id']) && is_numeric($_GET['id'])){
     $id_produto = $_GET['id'];
 
-    $sql = "DELETE FROM produto WHERE id_produto = :id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $id_produto, PDO::PARAM_INT);
 
-    if($stmt->execute()){
-        echo "<script>alert('Produto excluído com sucesso!');window.location.href='excluir_produto.php';</script>";
-    } else {
-        echo "<script>alert('Erro ao excluir produto!');</script>";
+    try {
+        $stmt = $pdo->prepare("DELETE FROM produto WHERE id_produto = :id");
+        $stmt->execute([':id' => $id_produto]);
+        echo "<script>alert('Produto excluído com sucesso!');window.location.href='buscar_produto.php';</script>";
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
+            echo "<script>alert('Não é possível excluir este produto porque há compras vinculadas a ele.');window.location.href='buscar_produto.php';</script>";
+        } else {
+            echo "Erro: " . $e->getMessage();
+        }
     }
+    
+
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -23,15 +23,16 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_GET['id']) && is_numeric($_GET['id'])){
     $id_cliente = $_GET['id'];
 
-    //Exclui o cliente do banco de dados
-    $sql = "DELETE FROM cliente WHERE id_cliente = :id";
-    $stmt=$pdo->prepare($sql);
-    $stmt->bindparam(':id',$id_cliente,PDO::PARAM_INT);
-
-    if($stmt->execute()){
-        echo "<script>alert('cliente excluido com sucesso!');window.location.href='excluir_cliente.php';</script>";
-    }else{
-        echo "<script>alert('Erro ao excluir cliente!');</script>";
+    try {
+        $stmt = $pdo->prepare("DELETE FROM cliente WHERE id_cliente = :id");
+        $stmt->execute([':id' => $id_cliente]);
+        echo "<script>alert('Cliente excluído com sucesso!');window.location.href='buscar_cliente.php';</script>";
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
+            echo "<script>alert('Não é possível excluir este cliente porque há compras vinculadas a ele.');window.location.href='buscar_cliente.php';</script>";
+        } else {
+            echo "Erro: " . $e->getMessage();
+        }
     }
 }
 ?>

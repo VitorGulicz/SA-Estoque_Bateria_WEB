@@ -9,7 +9,41 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
     exit();
 }
 
-// Consulta todas as compras com LEFT JOIN
+// Excluir compra
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir'])) {
+    $cod_compra = intval($_POST['excluir']);
+    try {
+        $pdo->beginTransaction();
+
+        // Busca compra para restaurar estoque
+        $stmt = $pdo->prepare("SELECT cod_produto, quantidade FROM compra WHERE cod_compra = :id");
+        $stmt->execute(['id' => $cod_compra]);
+        $compra = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($compra) {
+            // Atualiza estoque
+            $stmt = $pdo->prepare("UPDATE produto SET qtde = qtde + :quantidade WHERE id_produto = :id_produto");
+            $stmt->execute([
+                'quantidade' => $compra['quantidade'],
+                'id_produto' => $compra['cod_produto']
+            ]);
+
+            // Exclui compra
+            $stmt = $pdo->prepare("DELETE FROM compra WHERE cod_compra = :id");
+            $stmt->execute(['id' => $cod_compra]);
+
+            $pdo->commit();
+            echo "<script>alert('Compra excluída com sucesso!');</script>";
+        } else {
+            throw new Exception("Compra não encontrada!");
+        }
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        echo "<script>alert('Erro ao excluir compra: " . $e->getMessage() . "');</script>";
+    }
+}
+
+// Busca todas as compras
 try {
     $stmt = $pdo->prepare("
         SELECT 
@@ -57,15 +91,29 @@ try {
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-        a {
+        a.button, button.button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             text-decoration: none;
-            color: blue;
+            color: white;
+        }
+        a.button {
+            background-color: blue;
+        }
+        button.button {
+            background-color: red;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 5px;
         }
     </style>
 </head>
 <body>
     <h2>Lista de Compras</h2>
-    <p><a href="nova_compra.php">Registrar nova compra</a></p>
+    <p><a href="nova_compra.php" class="button" style="background-color:green;">Registrar nova compra</a></p>
 
     <table>
         <tr>
@@ -76,23 +124,33 @@ try {
             <th>Fornecedor</th>
             <th>Quantidade</th>
             <th>Valor</th>
+            <th>Ações</th>
         </tr>
 
         <?php if ($compras): ?>
             <?php foreach ($compras as $c): ?>
                 <tr>
                     <td><?= $c['cod_compra'] ?></td>
-                    <td><?= $c['nome_cliente'] ?? '—' ?></td>
-                    <td><?= htmlspecialchars($c['produto_tipo']) ?></td>
-                    <td><?= $c['nome_funcionario'] ?? '—' ?></td>
-                    <td><?= $c['nome_fornecedor'] ?? '—' ?></td>
+                    <td><?= htmlspecialchars($c['nome_cliente'] ?? '—') ?></td>
+                    <td><?= htmlspecialchars($c['produto_tipo'] ?? '—') ?></td>
+                    <td><?= htmlspecialchars($c['nome_funcionario'] ?? '—') ?></td>
+                    <td><?= htmlspecialchars($c['nome_fornecedor'] ?? '—') ?></td>
                     <td><?= $c['quantidade'] ?></td>
                     <td>R$ <?= number_format($c['vlr_compra'], 2, ',', '.') ?></td>
+                    <td>
+                        <div class="action-buttons">
+                            <a href="editar_compra.php?id=<?= $c['cod_compra'] ?>" class="button">Editar</a>
+                            <form method="post" style="margin:0;" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
+                                <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
+                                <button type="submit" class="button">Excluir</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="7">Nenhuma compra registrada.</td>
+                <td colspan="8">Nenhuma compra registrada.</td>
             </tr>
         <?php endif; ?>
     </table>
