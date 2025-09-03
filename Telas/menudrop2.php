@@ -21,10 +21,7 @@ $permissoes = [
     1=>["Cadastrar"=>["cadastro_usuario.php","cadastro_perfil.php","cadastro_cliente.php","cadastro_fornecedor.php","cadastro_produto.php","cadastro_funcionario.php"],
         "Buscar"=>["buscar_usuario.php","buscar_perfil.php","buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php","buscar_funcionario.php"],
         "Alterar"=>["alterar_usuario.php","alterar_perfil.php","alterar_cliente.php","alterar_fornecedor.php","alterar_produto.php","alterar_funcionario.php"],
-        "Excluir"=>["excluir_usuario.php","excluir_perfil.php","excluir_cliente.php","excluir_fornecedor.php","excluir_produto.php","excluir_funcionario.php"],
-        "Compra"=>["editar_compra.php","nova_compra.php", "lista_compras.php","excluir_compra.php"],
-        "Menu"=>["principal.php"],
-        "Logout"=>["logout.php"]],
+        "Excluir"=>["excluir_usuario.php","excluir_perfil.php","excluir_cliente.php","excluir_fornecedor.php","excluir_produto.php","excluir_funcionario.php"]],
 
         2=>["Cadastrar"=>["cadastro_cliente.php"],
         "Buscar"=>["buscar_cliente.php","buscar_forncedor.php","buscar_produto.php"],
@@ -75,7 +72,7 @@ $opcoes_menu = $permissoes[$id_perfil];
         border-bottom: 2px solid #dc3545;
         position: relative;
     ">
-        ⚡ POWER BATERIAS ⚡
+        ⚡ VGM POWER ⚡
         <div style="
             position: absolute;
             right: 20px;

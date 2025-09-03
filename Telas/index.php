@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="../CSS/styles.css">
-    <link rel="stylesheet" href="../CSS/tabela.css">
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
     <h2>Login:</h2>
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
         <button type="submit">Entrar</button>
     </form>
 
-    <p><a href="recuperar_senha.php" class="voltar">Esqueci minha senha</a>
+    <p><a href="recuperar_senha.php" class="back-btn">Esqueci minha senha</a>
 
 </body>
 </html>

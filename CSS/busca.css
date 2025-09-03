@@ -1,0 +1,214 @@
+/* Tema automotivo loja de baterias */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    border: 2px solid #FFD700;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #FFD700;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.search-section, form {
+    background: linear-gradient(145deg, #333333, #2a2a2a);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #FFD700;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.search-section label, label {
+    display: block;
+    margin-bottom: 10px;
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.search-form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #FFD700;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    color: #ffffff;
+    font-size: 16px;
+    min-width: 250px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #FF4444;
+    box-shadow: 0 0 15px rgba(255, 212, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+input[type="text"]::placeholder { color: #888; }
+
+button {
+    padding: 12px 25px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(145deg, #FF4444, #CC0000);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 68, 68, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(145deg, #CC0000, #AA0000);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 68, 68, 0.4);
+}
+
+.table-container {
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border: 1px solid #FFD700;
+}
+
+table {
+    width: 100%;;
+}
+
+th {
+    background: linear-gradient(145deg, #FFD700, #FFA500);
+    color: #1a1a1a;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #FF4444;
+}
+
+td {
+    padding: 1px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+tr:nth-child(even) { background: rgba(255, 212, 0, 0.05); }
+
+tr:hover {
+    background: linear-gradient(90deg, rgba(255, 212, 0, 0.1), rgba(255, 68, 68, 0.1));
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+  .action-btn {
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 3px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .edit-btn {
+    background: linear-gradient(145deg, #ffd700, #ffa500);
+    color: #1a1a1a;
+    box-shadow: 0 3px 6px rgba(255, 212, 0, 0.3);
+  }
+  .edit-btn:hover {
+    background: linear-gradient(145deg, #ffa500, #ff8c00);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(255, 212, 0, 0.4);
+  }
+  .edit-btn::before {
+    content: "✏️";
+  }
+  
+  .delete-btn {
+    background: linear-gradient(145deg, #ff4444, #cc0000);
+    box-shadow: 0 3px 6px rgba(255, 68, 68, 0.3);
+    border: 2px solid #dc143c;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .delete-btn:hover {
+    background: linear-gradient(145deg, #cc0000, #aa0000);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(255, 68, 68, 0.4);
+    border-color: #ff0000;
+  }
+  
+  .delete-btn::before {
+    content: "🗑️";
+  }
+  
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #FFD700;
+    font-size: 1.2em;
+    background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+    border-radius: 15px;
+    border: 1px solid #FFD700;
+}
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: linear-gradient(145deg, #333333, #2a2a2a);
+    color: #FFD700;
+    font-weight: bold;
+    border: 2px solid #FFD700;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+a.back-btn:hover {
+    background: linear-gradient(145deg, #e0a800, #d39e00);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.4);
+}
+.container .back-btn::before {
+    content: "🏠 ";
+  }
