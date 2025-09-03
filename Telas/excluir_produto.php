@@ -49,10 +49,12 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
-
+</br>
+<div class="container">
 <h2>Excluir Produto</h2>
 
 <?php if (!empty($produtos)): ?>
+    <div class="table-container">
     <table>
         <tr>
             <th>ID</th>
@@ -88,8 +90,10 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
 <?php else: ?>
     <p>Nenhum produto encontrado</p>
 <?php endif; ?>
+</div>
 
 <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+</div>
 
 </body>
 </html>
