@@ -42,8 +42,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Usuario</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
-    <link rel="stylesheet" href="../CSS/tabela.css">
+    <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
     <h2>Excluir Usuario</h2>
@@ -70,8 +69,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
                     <td><?= htmlspecialchars($fornecedor['email'])?></td>
                     <td><?= htmlspecialchars($fornecedor['contato'])?></td>
                     <td>
-                        <a href="excluir_fornecedor.php?id=<?= htmlspecialchars($fornecedor['id_fornecedor'])?>"onclick="return confirm('Tem certeza que deseja excluir este fornecedor')" class="excluir">
-                            Excluir</a>
+                        <a href="excluir_fornecedor.php?id=<?= htmlspecialchars($fornecedor['id_fornecedor'])?>" class="action-btn delete-btn" onclick="return confirm('Tem certeza que deseja excluir este fornecedor')">
                     </td>
                 </tr>
                 <?php endforeach;?>
@@ -79,6 +77,6 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         <?php else: ?>
             <p>Nenhum fornecedor encontrado</p>
         <?php endif;?>
-        <a href="principal.php" class="voltar">Voltar</a>
+        <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 </body>
 </html>

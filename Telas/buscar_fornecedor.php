@@ -46,15 +46,19 @@ $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
+<div class="container">
     <h2>Lista de Fornecedor</h2>
 <!--FORMULÁRIO PARA BUSCAR USUARIOS-->
+<div class="search-section">
     <form action="buscar_fornecedor.php" method="POST">
         <label for="busca">Digite o id ou NOME(opcional):</label>
-        <input type="text" id="busca" name="busca">
+        <input type="text" id="busca" name="busca" placeholder="Digite o ID ou nome do fornecedor...">
         <button type="submit">Buscar</button>
     </form>
+</div>
 
     <?php if(!empty($fornecedores)): ?>
+        <div class="table-container">
         <table border="1">
             <tr>
                 <th>ID</th>
@@ -77,15 +81,17 @@ $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= htmlspecialchars($fornecedor['email'])?></td>
                     <td><?= htmlspecialchars($fornecedor['contato'])?></td>
                     <td>
-                    <a href="alterar_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>"><button>Alterar</button></a>
+                    <a href="alterar_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>" class="action-btn edit-btn ">
                     </br>
-                    <a href="excluir_fornecedor.php?id=<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" onclick="return confirm('Tem certeza que deseja excluir este fornecedor?')"><button class="excluir">Excluir</button></a>
+                    <a href="excluir_fornecedor.php?id=<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" class="action-btn delete-btn" onclick="return confirm('Tem certeza que deseja excluir este fornecedor?')">
             <?php endforeach; ?>
         </table>
        <?php else: ?>
             <p> Nenhum fornecedor encontrado.</p>
         <?php endif; ?>
+    </div>
 
-        <a  href="principal.php" class="voltar">Voltar</a>
+        <a  href="principal.php" class="back-btn">Voltar Ao Menu Principal</a>
+</div>
 </body>
 </html>

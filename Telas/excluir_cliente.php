@@ -42,8 +42,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excluir Usuario</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
-    <link rel="stylesheet" href="../CSS/tabela.css">
+    <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
     <h2>Excluir Usuario</h2>
@@ -68,8 +67,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
                     <td><?= htmlspecialchars($cliente['email'])?></td>
                     <td><?= htmlspecialchars($cliente['cpf'])?></td>
                     <td>
-                        <a href="excluir_cliente.php?id=<?= htmlspecialchars($cliente['id_cliente'])?>"onclick="return confirm('Tem certeza que deseja excluir este cliente')" class="excluir">
-                            Excluir</a>
+                        <a href="excluir_cliente.php?id=<?= htmlspecialchars($cliente['id_cliente'])?> " class="action-btn delete-btn "onclick="return confirm('Tem certeza que deseja excluir este cliente')">
                     </td>
                 </tr>
                 <?php endforeach;?>
@@ -77,6 +75,6 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         <?php else: ?>
             <p>Nenhum cliente encontrado</p>
         <?php endif;?>
-        <a href="principal.php" class="voltar">Voltar</a>
+        <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 </body>
 </html>
