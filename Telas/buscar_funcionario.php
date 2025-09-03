@@ -39,8 +39,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VGM POWER - Buscar Funcionário</title>
-    <link rel="stylesheet" href="css/buscar_funcionario.css">
-    <link rel="stylesheet" href="../CSS/tudo.css">
+    <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
     <div class="container">
@@ -84,8 +83,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?=htmlspecialchars($usuario['cargo']); ?></td>
                                 <td>R$ <?=number_format($usuario['salario'], 2, ',', '.'); ?></td>
                                 <td>
-                                    <a href="alterar_funcionario.php?id=<?=$usuario['id_funcionario']; ?>" class="action-btn edit-btn ">Alterar</a>
-                                    <a href="excluir_funcionario.php?id=<?=$usuario['id_funcionario']; ?>" class="action-btn delete-btn" onclick="return confirm('⚠️ Tem certeza que deseja excluir este funcionário?')">Excluir</a>
+                                    <a href="alterar_funcionario.php?id=<?=$usuario['id_funcionario']; ?>" class="action-btn edit-btn ">
+                                    <a href="excluir_funcionario.php?id=<?=$usuario['id_funcionario']; ?>" class="action-btn delete-btn" onclick="return confirm('⚠️ Tem certeza que deseja excluir este funcionário?')">
                                 </td>
                             </tr>
                         <?php endforeach; ?>

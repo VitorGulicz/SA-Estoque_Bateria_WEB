@@ -44,7 +44,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔋 Excluir Funcionário - VGM POWER</title>
     <link rel="stylesheet" href="excluir_funcionario.css">
-    <link rel="stylesheet" href="../CSS/excluir.css">
+    <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
     <div class="header-container">
@@ -81,7 +81,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <td><?=htmlspecialchars($usuario['cargo']); ?></td>
                         <td><?=htmlspecialchars($usuario['salario']); ?></td>
                         <td>
-                            <a href="excluir_funcionario.php?id=<?= $usuario['id_funcionario']; ?>" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este funcionário?');">Excluir</a>
+                            <a href="excluir_funcionario.php?id=<?= $usuario['id_funcionario']; ?>" class="delete-btn" onclick="return confirm('Tem certeza que deseja excluir este funcionário?');">
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -91,6 +91,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         <p>Nenhum funcionário encontrado no sistema.</p>
     <?php endif; ?>
 
-    <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+    <a href="principal.php" class="back-btn">🏠 Voltar ao Menu Principal</a>
 </body>
 </html>

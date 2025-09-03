@@ -65,11 +65,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar usuário</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
 <!--Certifique-se de que o Java script está sendo carregado corretamente-->
 <script src="../JS/scripts.js"></script>
 <script src="../JS/mascara.js"></script>
-<link rel="stylesheet" href="../CSS/tudo.css">
+<link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
 <h2>Alterar Usuários</h2>
@@ -113,6 +112,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         </form>
         <?php endif; ?>
         
-        <a href="principal.php" class="voltar">Voltar</a>
+        <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 </body>
 </html>
