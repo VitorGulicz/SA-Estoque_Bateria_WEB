@@ -9,7 +9,7 @@ if($_SESSION['perfil']!=1 && $_SESSION['perfil']!=2) {
 }
 
 // INICIALIZA A VARIAVEL PARA EVITAR ERROS
-$fornecedores = [];
+$clientees = [];
 
 // SE O FORMULARIO FOR ENCIADO, BUSCA O USUARIO PELO ID OU NOME
 
@@ -19,21 +19,21 @@ if ($_SERVER["REQUEST_METHOD"]=="POST" && !empty( $_POST["busca"] )) {
     // VERIFICA SE A BUSCA É UM NÚMERO OU UM NOME
 
     if(is_numeric($busca)) {
-        $sql = "SELECT * FROM fornecedor WHERE id_fornecedor = :busca ORDER BY nome_fornecedor ASC";
+        $sql = "SELECT * FROM cliente WHERE id_cliente = :busca ORDER BY nome_cliente ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':busca' ,$busca,PDO::PARAM_INT);
     } else {
-        $sql = "SELECT * FROM fornecedor WHERE nome_fornecedor LIKE :busca_nome ORDER BY nome_fornecedor ASC";
+        $sql = "SELECT * FROM cliente WHERE nome_cliente LIKE :busca_nome ORDER BY nome_cliente ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':busca_nome', "$busca%", PDO::PARAM_STR);
     }
 } else {
-    $sql = "SELECT * FROM fornecedor ORDER BY nome_fornecedor ASC";
+    $sql = "SELECT * FROM cliente ORDER BY nome_cliente ASC";
     $stmt = $pdo->prepare($sql);
 }
 
 $stmt->execute();
-$fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -42,49 +42,47 @@ $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Fornecedor</title>
+    <title>Buscar Usuario</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="stylesheet" href="../CSS/tabela.css">
 </head>
 <body>
-    <h2>Lista de Fornecedor</h2>
+    <h2>Lista de usuários</h2>
 <!--FORMULÁRIO PARA BUSCAR USUARIOS-->
-    <form action="buscar_fornecedor.php" method="POST">
+    <form action="buscar_cliente.php" method="POST">
         <label for="busca">Digite o id ou NOME(opcional):</label>
         <input type="text" id="busca" name="busca">
         <button type="submit">Buscar</button>
     </form>
 
-    <?php if(!empty($fornecedores)): ?>
+    <?php if(!empty($clientes)): ?>
         <table border="1">
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
-                <th>CNPJ</th>
                 <th>Endereço</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Contato</th>
+                <th>CPF</th>
                 <th>Ações</th>
             </tr>
 
-        <?php foreach($fornecedores as $fornecedor): ?>
+        <?php foreach($clientes as $cliente): ?>
             <tr>
-                    <td><?= htmlspecialchars($fornecedor['id_fornecedor'])?></td>
-                    <td><?= htmlspecialchars($fornecedor['nome_fornecedor'])?></td>
-                    <td><?= htmlspecialchars($fornecedor['cnpj'])?></td>
-                    <td><?= htmlspecialchars($fornecedor['endereco'])?></td>
-                    <td><?= htmlspecialchars($fornecedor['telefone'])?></td>
-                    <td><?= htmlspecialchars($fornecedor['email'])?></td>
-                    <td><?= htmlspecialchars($fornecedor['contato'])?></td>
+                    <td><?= htmlspecialchars($cliente['id_cliente'])?></td>
+                    <td><?= htmlspecialchars($cliente['nome_cliente'])?></td>
+                    <td><?= htmlspecialchars($cliente['endereco'])?></td>
+                    <td><?= htmlspecialchars($cliente['telefone'])?></td>
+                    <td><?= htmlspecialchars($cliente['email'])?></td>
+                    <td><?= htmlspecialchars($cliente['cpf'])?></td>
                     <td>
-                    <a href="alterar_fornecedor.php?id=<?=htmlspecialchars($fornecedor['id_fornecedor'])?>"><button>Alterar</button></a>
+                    <a href="alterar_cliente.php?id=<?=htmlspecialchars($cliente['id_cliente'])?>"><button>Alterar</button></a>
                     </br>
-                    <a href="excluir_fornecedor.php?id=<?= htmlspecialchars($fornecedor['id_fornecedor']) ?>" onclick="return confirm('Tem certeza que deseja excluir este fornecedor?')"><button class="excluir">Excluir</button></a>
+                    <a href="excluir_cliente.php?id=<?= htmlspecialchars($cliente['id_cliente']) ?>" onclick="return confirm('Tem certeza que deseja excluir este cliente?')"><button class="excluir">Excluir</button></a>
             <?php endforeach; ?>
         </table>
        <?php else: ?>
-            <p> Nenhum fornecedor encontrado.</p>
+            <p> Nenhum cliente encontrado.</p>
         <?php endif; ?>
 
         <a  href="principal.php" class="voltar">Voltar</a>

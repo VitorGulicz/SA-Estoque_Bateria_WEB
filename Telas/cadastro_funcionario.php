@@ -1,7 +1,11 @@
-<?php
+
+
+<?php 
+
 session_start();
 require_once 'conexao.php';
 require_once 'menudrop.php';
+
 
 // verifica se o usuario tem permissao 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
@@ -26,12 +30,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     $stmt->bindParam(':cargo', $cargo);
     $stmt->bindParam(':salario', $salario);
 
+
     if($stmt->execute()) {
         echo "<script>alert('Funcionario cadastrado com sucesso!');</script>";
     }else{
         echo "<script>alert('Erro ao cadastrar funcionario.');</script>";
     }
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -47,14 +54,14 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
-    <h2>Cadastro de Funcionário</h2>
+    <h2>Cadastro de Funcionario</h2>
     <form method="POST" action="cadastro_funcionario.php">
-
         <label for="nome">Nome:</label>
-        <input type="text" id="nome2" name="nome2" required onkeypress="mascara(this, nome1)">
-
-        <label for="cpf">CPF:</label>
-        <input type="text" id="cpf" name="cpf" required maxlength="14" onkeypress="mascara(this, mascaraCPF)">
+        <input type="text" id="nome2" name="nome2" required onkeypress ="mascara(this, nome)">
+        
+      <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required maxlength="14" onkeypress ="mascara(this, mascaraCPF)">
+        
 
         <label for="endereco">Endereço:</label>
         <input type="text" id="endereco" name="endereco" required>
@@ -70,14 +77,21 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
         <label for="cargo">Cargo:</label>
         <input type="text" id="cargo" name="cargo" required>
-
-        <label for="salario">Salário:</label>
-        <input type="number" id="salario" name="salario" required>
         
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+       <label for="salario">Salário:</label>
+        <input type="number" id="salario" name="salario" required>
+ 
+      
         <button type="submit">Cadastrar</button>
         <button type="reset">Cancelar</button>
     </form>
 
+
     <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 </body>
 </html>
+
+
