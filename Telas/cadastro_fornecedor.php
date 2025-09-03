@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <title>Cadastrar Fornecedor</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <script src="../JS/mascara.js"></script>
-    <link rel="stylesheet" href="../CSS/tabela.css">
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
     <h2>Cadastrar Fornecedor</h2>

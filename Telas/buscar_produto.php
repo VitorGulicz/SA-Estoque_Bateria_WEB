@@ -56,25 +56,7 @@ try {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buscar Produto</title>
-<style>
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; padding: 20px; text-align: center; color: #333; }
-    h2 { color: #2c3e50; margin-bottom: 20px; }
-    form { margin-bottom: 30px; }
-    input[type="text"] { padding: 10px; width: 250px; border: 1px solid #ccc; border-radius: 5px; outline: none; }
-    input[type="text"]:focus { border-color: #2980b9; }
-    button { padding: 10px 15px; border: none; background-color: #2980b9; color: white; border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease; }
-    button:hover { background-color: #1c5980; }
-    table { margin: auto; border-collapse: separate; border-spacing: 0; width: 95%; max-width: 1000px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; }
-    th, td { padding: 12px 15px; text-align: center; }
-    th { background-color: #2980b9; color: white; font-weight: 600; }
-    tr:nth-child(even) { background-color: #f7f9fb; }
-    tr:hover { background-color: #d6eaf8; transition: 0.2s; }
-    a { display: inline-block; margin: 5px 0; padding: 5px 10px; color: white; text-decoration: none; border-radius: 5px; background-color: #27ae60; transition: background-color 0.2s ease; }
-    a:hover { background-color: #1e8449; }
-    a.delete { background-color: #c0392b; }
-    a.delete:hover { background-color: #922b21; }
-    address { margin-top: 30px; font-size: 0.9em; color: #7f8c8d; }
-</style>
+<link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
 

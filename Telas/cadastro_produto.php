@@ -64,24 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../CSS/cadastro.css">
 <title>Cadastro de Produto</title>
-<style>
-    /* Seu CSS existente permanece igual */
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #333; padding: 20px; text-align: center; }
-    h2 { margin-bottom: 20px; color: #2c3e50; }
-    form { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); text-align: left; }
-    label { display: block; margin-top: 15px; font-weight: 500; }
-    input[type="text"], input[type="number"], select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; outline: none; }
-    input:focus, select:focus { border-color: #2980b9; }
-    button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; margin-right: 10px; color: white; transition: background-color 0.2s ease; }
-    button[type="submit"] { background-color: #2980b9; }
-    button[type="submit"]:hover { background-color: #1c5980; }
-    button[type="reset"] { background-color: #c0392b; }
-    button[type="reset"]:hover { background-color: #922b21; }
-    a.back-link { display: inline-block; margin-top: 20px; padding: 8px 15px; background-color: #2980b9; color: white; border-radius: 5px; text-decoration: none; transition: background-color 0.2s ease; }
-    a.back-link:hover { background-color: #1c5980; }
-    address { margin-top: 30px; font-size: 0.9em; color: #7f8c8d; font-style: normal; }
-</style>
 
 <script src="../JS/mascara.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

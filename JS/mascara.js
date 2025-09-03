@@ -80,7 +80,7 @@ function mascaraSalario(v) {
     v = v.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // separador de milhar
     return v;
 }
-=======
+
 
 
 function data1(v) {

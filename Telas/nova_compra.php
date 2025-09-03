@@ -77,6 +77,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Nova Compra</title>
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
     <h2>Registrar Nova Compra</h2>
@@ -142,7 +143,7 @@ try {
         <button type="submit">Registrar Compra</button>
     </form>
 
-    <p><a href="lista_compras.php">Voltar para lista de compras</a></p>
+    <p><a href="lista_compras.php" class="back-btn">Voltar para lista de compras</a></p>
 
     <script>
         let precoUnitario = 0;

@@ -36,13 +36,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Fornecedor</title>
+    <title>Cadastrar Cliente</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <script src="../JS/mascara.js"></script>
-    <link rel="stylesheet" href="../CSS/tabela.css">
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
-    <h2>Cadastrar Fornecedor</h2>
+    <h2>Cadastrar Cliente</h2>
     <form action="cadastro_cliente.php" method="POST">
 
         <label for="nome_cliente">Nome do Cliente: </label>
