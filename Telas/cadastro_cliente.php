@@ -61,8 +61,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         <input type="text" id="cpf" name="cpf" required onkeypress="mascara(this,cpf1)" maxlength="14">
 
         <button type="submit" class="cadastrar">Cadastrar</button>
-        <button type="submit" class="excluir">Cancelar</button>
+        <button type="reset" class="excluir">Cancelar</button>
 </form>
-    <a href="principal.php" class="voltar">Voltar</a>
+    <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
     </body>
 </html>

@@ -224,10 +224,24 @@ label {
 }
 
 label[for="nome"]::before { content: '👤 '; margin-right: 5px; }
-label[for="nome"]::before { content: '👤 '; margin-right: 5px; }
+label[for="cnpj"]::before { content: '🧾'; margin-right: 5px; }
+label[for="endereco"]::before { content: '🏡'; margin-right: 5px; }
+label[for="telefone"]::before { content: '📞'; margin-right: 5px; }
+label[for="contato"]::before { content: '🪪'; margin-right: 5px; }
+label[for="cpf"]::before { content: '🪪'; margin-right: 5px; }
 label[for="email"]::before { content: '📧 '; margin-right: 5px; }
 label[for="senha"]::before { content: '🔐 '; margin-right: 5px; }
 label[for="id_perfil"]::before { content: '🔧 '; margin-right: 5px; }
+label[for="data"]::before { content: '📅'; margin-right: 5px; }
+label[for="cargo"]::before { content: '👨‍💼'; margin-right: 5px; }
+label[for="salario"]::before { content: '💵'; margin-right: 5px; }
+label[for="fornecedor"]::before { content: '👨‍💼'; margin-right: 5px; }
+label[for="voltagem"]::before { content: '🔌'; margin-right: 5px; }
+label[for="descricao"]::before { content: '🧾'; margin-right: 5px; }
+label[for="marca"]::before { content: '🔖'; margin-right: 5px; }
+label[for="preco"]::before { content: '🏷️'; margin-right: 5px; }
+label[for="qtde"]::before { content: '🔂'; margin-right: 5px; }
+label[for="validade"]::before { content: '📅'; margin-right: 5px; }
 
 input[type="text"],
 input[type="email"],

@@ -109,14 +109,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
 
     <button type="submit">Salvar</button>
-    <button type="reset">Cancelar</button>
+    <button type="reset" class="excluir">Cancelar</button>
 </form>
 
-<a href="principal.php" class="back-link">Voltar</a>
+<a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 
-<address>
-    | Max Emanoel / estudante / desenvolvimento 
-</address>
+
 
 <script>
 $(document).ready(function() {
