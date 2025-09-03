@@ -143,7 +143,7 @@ try {
         <button type="submit">Registrar Compra</button>
     </form>
 
-    <p><a href="lista_compras.php" class="back-btn">Voltar para lista de compras</a></p>
+    <p><a href="principal.php" class="back-btn">Voltar ao Menu Principal</a></p>
 
     <script>
         let precoUnitario = 0;
