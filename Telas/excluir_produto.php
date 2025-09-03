@@ -31,7 +31,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         echo "<script>alert('Produto excluído com sucesso!');window.location.href='buscar_produto.php';</script>";
     } catch (PDOException $e) {
         if ($e->getCode() == 23000) {
-            echo "<script>alert('Não é possível excluir este produto porque há compras vinculadas a ele.');window.location.href='excluir_produto.php';</script>";
+            echo "<script>alert('Não é possível excluir este produto porque há compras vinculadas a ele.');window.location.href='buscar_produto.php';</script>";
         } else {
             echo "Erro: " . $e->getMessage();
         }

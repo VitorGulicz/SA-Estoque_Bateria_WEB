@@ -42,12 +42,12 @@ $fornecedores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Usuario</title>
+    <title>Buscar Fornecedor</title>
     <link rel="stylesheet" href="../CSS/styles.css">
     <link rel="stylesheet" href="../CSS/tabela.css">
 </head>
 <body>
-    <h2>Lista de usuários</h2>
+    <h2>Lista de Fornecedor</h2>
 <!--FORMULÁRIO PARA BUSCAR USUARIOS-->
     <form action="buscar_fornecedor.php" method="POST">
         <label for="busca">Digite o id ou NOME(opcional):</label>
