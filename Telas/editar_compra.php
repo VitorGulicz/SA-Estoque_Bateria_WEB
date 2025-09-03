@@ -114,9 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <head>
 <meta charset="UTF-8">
 <title>Editar Compra</title>
-<style>
-input[type="text"], select, input[type="number"] { width: 300px; padding:5px; margin-bottom:5px; }
-</style>
+<link rel="stylesheet" href="../CSS/alterar.css">
 </head>
 <body>
 <h2>Editar Compra</h2>

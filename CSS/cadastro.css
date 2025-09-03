@@ -224,6 +224,7 @@ label {
 }
 
 label[for="nome"]::before { content: '👤 '; margin-right: 5px; }
+label[for="nome"]::before { content: '👤 '; margin-right: 5px; }
 label[for="email"]::before { content: '📧 '; margin-right: 5px; }
 label[for="senha"]::before { content: '🔐 '; margin-right: 5px; }
 label[for="id_perfil"]::before { content: '🔧 '; margin-right: 5px; }
