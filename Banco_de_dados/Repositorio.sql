@@ -140,4 +140,31 @@ INSERT INTO `usuario` (`id_usuario`, `nome`, `senha`, `email`, `id_perfil`, `sen
 (12, 'Grace Van Pelt', '$2y$10$g5h1LI20ufnY/p6062h5r.ezKU7eFlhhwRCSkuKTJiYUYulPIQjxq', 'grace@grace', 4, 0),
 (13, 'Xavier', '$2y$10$ErMocH1x.avm4asmRnKzeOUF30fi4ZO33C/9H6D2opvlFZ6zEorR.', 'xavier@xavier', 1, 0);
 
+INSERT INTO cliente (nome_cliente, endereco, telefone, email, cpf) VALUES
+('João Silva', 'Rua das Flores, 123', '(11) 99999-1111', 'joao.silva@email.com', '123.456.789-00'),
+('Maria Oliveira', 'Av. Brasil, 456', '(11) 98888-2222', 'maria.oliveira@email.com', '987.654.321-00'),
+('Carlos Santos', 'Rua Central, 789', '(11) 97777-3333', 'carlos.santos@email.com', '321.654.987-00');
+
+INSERT INTO fornecedor (nome_fornecedor, cnpj, endereco, telefone, email, contato) VALUES
+('Baterias Moura', '12.345.678/0001-99', 'Rodovia BR-101, Km 200', '(81) 3333-1111', 'contato@moura.com', 'Fernanda Moura'),
+('Baterias Heliar', '98.765.432/0001-55', 'Av. das Indústrias, 555', '(41) 4444-2222', 'suporte@heliar.com', 'Roberto Lima'),
+('Baterias Bosch', '11.222.333/0001-44', 'Rua Industrial, 88', '(11) 5555-3333', 'vendas@bosch.com', 'Cláudia Souza');
+
+INSERT INTO funcionario (nome_funcionario, cpf, endereco, telefone, email, dataDeContratacao, cargo, salario) VALUES
+('Ana Pereira', '123.456.789-10', 'Rua A, 123', '(11) 91234-5678', 'ana.pereira@empresa.com', '2022-01-15', 'Atendente', 2500.00),
+('Lucas Martins', '987.654.321-00', 'Av. B, 456', '(11) 97654-3210', 'lucas.martins@empresa.com', '2021-05-20', 'Vendedor', 3000.00),
+('Fernanda Costa', '111.222.333-44', 'Rua C, 789', '(11) 96543-2100', 'fernanda.costa@empresa.com', '2020-10-01', 'Gerente', 5000.00);
+
+INSERT INTO produto (id_fornecedor, tipo, voltagem, descricao, marca, qtde, preco, validade) VALUES
+(1, 'Bateria Automotiva', '12V', 'Bateria Moura 60Ah para veículos leves', 'Moura', 50, 480.00, '2026-12-31'),
+(2, 'Bateria Automotiva', '12V', 'Bateria Heliar 70Ah com tecnologia EFB', 'Heliar', 40, 520.00, '2026-08-15'),
+(3, 'Bateria Automotiva', '12V', 'Bateria Bosch 75Ah para carros premium', 'Bosch', 30, 600.00, '2027-01-10');
+
+INSERT INTO usuario (nome, senha, email, id_perfil) VALUES
+('Administrador', '123456', 'admin@empresa.com', 1),
+('Secretária Maria', '123456', 'secretaria@empresa.com', 2),
+('João Estoquista', '123456', 'almoxarife@empresa.com', 3),
+('Cliente Carlos', '123456', 'cliente@empresa.com', 4);
+
+
 COMMIT;
