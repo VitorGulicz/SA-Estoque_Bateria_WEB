@@ -12,7 +12,7 @@ if($_SESSION['perfil'] != 1){
 // Inicializa variável
 $produto = null;
 
-// Busca produto
+// Busca produto via POST (formulário de busca)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
     $busca = trim($_POST["busca_produto"]);
 
@@ -32,6 +32,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
         echo "<script>alert('Produto não encontrado!');</script>";
     }
 }
+
+// Busca produto via GET (vindo da tela de listar/alterar)
+if (!$produto && isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+    $stmt = $pdo->prepare("SELECT * FROM produto WHERE id_produto = :id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $produto = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if(!$produto){
+        echo "<script>alert('Produto não encontrado!');</script>";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -40,7 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Produto</title>
     <style>
-        /* Seu CSS existente */
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #333; text-align: center; padding: 20px; }
         h2 { color: #2c3e50; margin-bottom: 20px; }
         form { margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; text-align: left; }
@@ -61,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
 
 <h2>Alterar Produto</h2>
 
+<!-- Formulário de busca -->
 <form action="alterar_produto.php" method="POST">
     <label for="busca_produto">Digite o ID ou NOME do produto:</label>
     <input type="text" id="busca_produto" name="busca_produto" required>
@@ -68,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
 </form>
 
 <?php if ($produto): ?>
+    <!-- Formulário de alteração -->
     <form action="processa_alteracao_produto.php" method="POST">
         <input type="hidden" name="id_produto" value="<?=htmlspecialchars($produto['id_produto'])?>">
 
@@ -78,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
             $stmt_fornecedor = $pdo->query("SELECT id_fornecedor, nome_fornecedor FROM fornecedor ORDER BY nome_fornecedor ASC");
             $fornecedores = $stmt_fornecedor->fetchAll(PDO::FETCH_ASSOC);
             foreach($fornecedores as $f) {
-                $selected = ($f['nome_fornecedor'] == $produto['fornecedor']) ? "selected" : "";
-                echo "<option value='".htmlspecialchars($f['nome_fornecedor'])."' $selected>".htmlspecialchars($f['nome_fornecedor'])."</option>";
+                $selected = ($f['id_fornecedor'] == $produto['id_fornecedor']) ? "selected" : "";
+                echo "<option value='".htmlspecialchars($f['id_fornecedor'])."' $selected>".htmlspecialchars($f['nome_fornecedor'])."</option>";
             }
             ?>
         </select>
@@ -101,8 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['busca_produto'])) {
 
         <label for="preco">Preço do Produto:</label>
         <input type="text" step="0.01" id="preco" name="preco" value="<?=htmlspecialchars($produto['preco'])?>" required>
+
         <label for="validade">Validade:</label>
-<input type="text" id="validade" name="validade" value="<?=htmlspecialchars($produto['validade'])?>" maxlength="10" placeholder="dd/mm/aaaa" onkeypress="data1(this, event)">
+        <input type="text" id="validade" name="validade" value="<?=htmlspecialchars($produto['validade'])?>" maxlength="10" placeholder="dd/mm/aaaa" onkeypress="data1(this, event)">
 
         <button type="submit">Alterar</button>
         <button type="reset">Cancelar</button>
