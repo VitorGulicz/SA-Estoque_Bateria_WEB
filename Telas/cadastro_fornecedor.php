@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <body>
     <h2>Cadastrar Fornecedor</h2>
     <form action="cadastro_fornecedor.php" method="POST">
-        <label for="nome_fornecedor">Nome do Fornecedor: </label>
+        <label for="nome">Nome do Fornecedor: </label>
         <input type="text" id="nome_fornecedor" name="nome_fornecedor" required onkeypress="mascara(this,nome1)">
 
         <label for="cnpj">CNPJ do Fornecedor: </label>

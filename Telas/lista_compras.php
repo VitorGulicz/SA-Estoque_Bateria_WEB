@@ -74,42 +74,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Lista de Compras</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #666;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #ddd;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        a.button, button.button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-        a.button {
-            background-color: blue;
-        }
-        button.button {
-            background-color: red;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
     <h2>Lista de Compras</h2>
