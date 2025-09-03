@@ -43,16 +43,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔋 Excluir Funcionário - VGM POWER</title>
-    <link rel="stylesheet" href="excluir_funcionario.css">
     <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
-    <div class="header-container">
-        <h2>🔋 Excluir Funcionário</h2>
-        <div class="subtitle">⚡ AutoBat Pro - Sistema de Gestão ⚡</div>
-    </div>
+</br>
+<div class="container">
+<h2>Excluir Funcionário</h2>
 
     <?php if(!empty($usuarios)): ?>
+        <div class="table-container">
         <table>
             <thead>
                 <tr>
@@ -90,7 +89,9 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <?php else: ?>
         <p>Nenhum funcionário encontrado no sistema.</p>
     <?php endif; ?>
+    </div>
 
-    <a href="principal.php" class="back-btn">🏠 Voltar ao Menu Principal</a>
+    <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+    </div>
 </body>
 </html>

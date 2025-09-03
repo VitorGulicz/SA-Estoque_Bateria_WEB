@@ -52,22 +52,7 @@ if (!$produto && isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Produto</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; color: #333; text-align: center; padding: 20px; }
-        h2 { color: #2c3e50; margin-bottom: 20px; }
-        form { margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; text-align: left; }
-        label { display: block; margin: 12px 0 5px; font-weight: 500; }
-        input[type="text"], input[type="number"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; outline: none; }
-        input:focus, select:focus { border-color: #2980b9; }
-        button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; margin-right: 10px; transition: background-color 0.2s ease; color: white; }
-        button[type="submit"] { background-color: #2980b9; }
-        button[type="submit"]:hover { background-color: #1c5980; }
-        button[type="reset"] { background-color: #c0392b; }
-        button[type="reset"]:hover { background-color: #922b21; }
-        a.back-link { display: inline-block; margin-top: 20px; padding: 8px 15px; background-color: #2980b9; color: white; border-radius: 5px; text-decoration: none; transition: background-color 0.2s ease; }
-        a.back-link:hover { background-color: #1c5980; }
-        address { margin-top: 30px; font-size: 0.9em; color: #7f8c8d; font-style: normal; }
-    </style>
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
 
@@ -124,11 +109,8 @@ if (!$produto && isset($_GET['id'])) {
     </form>
 <?php endif; ?>
 
-<a href="principal.php" class="back-link">Voltar</a>
+<a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 
-<address>
-    | Max Emanoel / estudante / desenvolvimento 
-</address>
 
 </body>
 </html>
