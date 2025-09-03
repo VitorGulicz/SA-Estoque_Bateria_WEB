@@ -63,6 +63,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         <button type="submit" class="cadastrar">Cadastrar</button>
         <button type="submit" class="excluir">Cancelar</button>
 </form>
-    <a href="principal.php" class="voltar">Voltar</a>
+    <a href="principal.php" class="back-btn">Voltar Ao Menu Principal</a>
     </body>
 </html>

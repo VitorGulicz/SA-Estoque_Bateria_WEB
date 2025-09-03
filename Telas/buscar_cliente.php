@@ -48,15 +48,19 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
+<div class="container">
     <h2>Lista de Clientes</h2>
 <!--FORMULÁRIO PARA BUSCAR USUARIOS-->
+<div class="search-section">
     <form action="buscar_cliente.php" method="POST">
         <label for="busca">Digite o id ou NOME(opcional):</label>
-        <input type="text" id="busca" name="busca">
+        <input type="text" id="busca" name="busca" placeholder="Digite o ID ou nome do cliente...">
         <button type="submit">Buscar</button>
     </form>
+</div>
 
     <?php if(!empty($clientes)): ?>
+        <div class="table-container">
         <table border="1">
             <tr>
                 <th>ID</th>
@@ -77,15 +81,17 @@ $clientes = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= htmlspecialchars($cliente['email'])?></td>
                     <td><?= htmlspecialchars($cliente['cpf'])?></td>
                     <td>
-                    <a href="alterar_cliente.php?id=<?=htmlspecialchars($cliente['id_cliente'])?>"><button>Alterar</button></a>
+                    <a href="alterar_cliente.php?id=<?=htmlspecialchars($cliente['id_cliente'])?>" class="action-btn edit-btn ">
                     </br>
-                    <a href="excluir_cliente.php?id=<?= htmlspecialchars($cliente['id_cliente']) ?>" onclick="return confirm('Tem certeza que deseja excluir este cliente?')"><button class="excluir">Excluir</button></a>
+                    <a href="excluir_cliente.php?id=<?= htmlspecialchars($cliente['id_cliente']) ?>" class="action-btn delete-btn" onclick="return confirm('Tem certeza que deseja excluir este cliente?')">
             <?php endforeach; ?>
         </table>
        <?php else: ?>
             <p> Nenhum cliente encontrado.</p>
         <?php endif; ?>
+    </div>
 
-        <a  href="principal.php" class="voltar">Voltar</a>
+        <a  href="principal.php" class="back-btn">Voltar Ao Menu Principal</a>
+</div>
 </body>
 </html>

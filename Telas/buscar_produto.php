@@ -59,16 +59,19 @@ try {
 <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
-
+<div class="container">
 <h2>Buscar Produtos</h2>
 
+<div class="search-section">
 <form action="buscar_produto.php" method="POST">
     <label for="busca">Digite o ID, NOME do Produto ou FORNECEDOR (opcional):</label>
-    <input type="text" id="busca" name="busca" placeholder="Ex: 1, Parafuso ou Max Fornecedor">
+    <input type="text" id="busca" name="busca" placeholder="Digite o ID ou nome do produto...">
     <button type="submit">Buscar</button>
 </form>
+</div>
 
 <?php if (!empty($produtos)): ?>
+    <div class="table-container">
     <table>
         <tr>
             <th>ID</th>
@@ -92,8 +95,8 @@ try {
                 <td><?= htmlspecialchars($produto['validade']) ?></td>
                 <td><?= htmlspecialchars($produto['nome_fornecedor']) ?></td>
                 <td>
-                    <a href="alterar_produto.php?id=<?= htmlspecialchars($produto['id_produto']) ?>">Alterar</a><br>
-                    <a href="excluir_produto.php?id=<?= htmlspecialchars($produto['id_produto']) ?>" class="delete" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a>
+                    <a href="alterar_produto.php?id=<?= htmlspecialchars($produto['id_produto']) ?>" class="action-btn edit-btn ">
+                    <a href="excluir_produto.php?id=<?= htmlspecialchars($produto['id_produto']) ?>" class="action-btn delete-btn" onclick="return confirm('Tem certeza que deseja excluir este produto?')">
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -101,11 +104,11 @@ try {
 <?php else: ?>
     <p>Nenhum produto encontrado.</p>
 <?php endif; ?>
+</div>
 
-<a href="principal.php">Voltar</a>
-
+<a href="principal.php" class="back-btn">Voltar Ao Menu Principal</a>
+</div>
 <address>
-    | Max Emanoel / estudante / desenvolvimento 
 </address>
 
 </body>
