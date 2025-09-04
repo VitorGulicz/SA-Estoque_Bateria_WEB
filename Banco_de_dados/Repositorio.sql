@@ -166,5 +166,7 @@ INSERT INTO usuario (nome, senha, email, id_perfil) VALUES
 ('João Estoquista', '123456', 'almoxarife@empresa.com', 3),
 ('Cliente Carlos', '123456', 'cliente@empresa.com', 4);
 
+ALTER TABLE compra ADD COLUMN data_compra DATE NOT NULL DEFAULT (CURRENT_DATE);
+
 
 COMMIT;
