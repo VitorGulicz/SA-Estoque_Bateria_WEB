@@ -68,12 +68,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Lista de Compras</title>
-    <style>
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #f4f4f4; }
-        button.button { padding: 5px 10px; background-color: red; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
     <h2>Lista de Compras</h2>
@@ -102,9 +97,9 @@ try {
                     <td><?= htmlspecialchars($c['nome_funcionario']) ?></td>
                     <td><?= htmlspecialchars($c['nome_fornecedor']) ?></td>
                     <td>
-                        <form method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
+                        <form method="post" style="display:inline;"class= "action-btn delete-btn" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
                             <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
-                            <button type="submit" class="button">Excluir</button>
+                            <button type="submit" class="button"></button>
                         </form>
                     </td>
                 </tr>
