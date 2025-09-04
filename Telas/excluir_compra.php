@@ -97,9 +97,9 @@ try {
                     <td><?= htmlspecialchars($c['nome_funcionario']) ?></td>
                     <td><?= htmlspecialchars($c['nome_fornecedor']) ?></td>
                     <td>
-                        <form method="post" style="display:inline;"class= "action-btn delete-btn" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
+                        <form method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
                             <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
-                            <button type="submit" class="button"></button>
+                            <button type="submit" class="button">🗑️</button>
                         </form>
                     </td>
                 </tr>
