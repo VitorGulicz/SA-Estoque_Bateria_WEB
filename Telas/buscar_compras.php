@@ -108,7 +108,7 @@ try {
                     <td>R$ <?= number_format($c['vlr_compra'], 2, ',', '.') ?></td>
                     <td>
                         <!-- Link para editar compra -->
-                        <a href="editar_compra.php?id=<?= $c['cod_compra'] ?>"  
+                        <a href="alterar_compra.php?id=<?= $c['cod_compra'] ?>"  
                            class="action-btn edit-btn"
                            onsubmit="return confirm('Deseja realmente excluir esta compra?');">
                             <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
@@ -125,6 +125,6 @@ try {
     </table>
 
     <!-- Botão para cadastrar uma nova compra -->
-    <p><a href="nova_compra.php" class="back-btn">🛒 Registrar nova compra</a></p>
+    <p><a href="principal.php" class="back-btn">🛒 Registrar nova compra</a></p>
 </body>
 </html>
