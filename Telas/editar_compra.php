@@ -114,12 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <head>
 <meta charset="UTF-8">
 <title>Editar Compra</title>
-<link rel="stylesheet" href="../CSS/alterar.css">
+<link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
 <h2>Editar Compra</h2>
-
+<div class="container">
 <!-- Pesquisa de compras -->
+<div class="search-section">
 <label>Pesquisar Compra (ID ou Cliente):</label><br>
 <input type="text" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
 <select id="selectCompra" size="5">
@@ -132,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 </select>
 <button type="button" onclick="buscarCompra()">Buscar Compra</button>
 <br><br>
-
+    </div>
 <?php if($compra): ?>
 <form method="post">
     <!-- Produto -->
@@ -198,8 +199,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 </form>
 <?php endif; ?>
 
-<p><a href="lista_compras.php">Voltar para lista de compras</a></p>
 
+</div>
+<p><a href="lista_compras.php">Voltar para lista de compras</a></p>
+        
 <script>
 let precoUnitario = 0;
 
