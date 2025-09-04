@@ -45,8 +45,11 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     <link rel="stylesheet" href="../CSS/busca.css">
 </head>
 <body>
+</br>
+<div class="container">
     <h2>Excluir Usuario</h2>
     <?php if (!empty($clientes)):?>
+        <div class="table-container">
         <table border="1">
             <tr>
                 <th>ID</th>
@@ -75,6 +78,8 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         <?php else: ?>
             <p>Nenhum cliente encontrado</p>
         <?php endif;?>
+    </div>
         <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+    </div>
 </body>
 </html>
