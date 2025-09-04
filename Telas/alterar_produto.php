@@ -64,14 +64,14 @@ if (!$produto && isset($_GET['id'])) {
     <input type="text" id="busca_produto" name="busca_produto" required>
     <button type="submit">Buscar</button>
 </form>
-
+</br>
 <?php if ($produto): ?>
     <!-- Formulário de alteração -->
     <form action="processa_alteracao_produto.php" method="POST">
         <input type="hidden" name="id_produto" value="<?=htmlspecialchars($produto['id_produto'])?>">
 
         <label for="fornecedor">Fornecedor:</label>
-        <select id="fornecedor" name="fornecedor" required>
+        <select id="fornecedor" name="fornecedor" required style="width:100%;">
             <option value="">Selecione um fornecedor</option>
             <?php
             $stmt_fornecedor = $pdo->query("SELECT id_fornecedor, nome_fornecedor FROM fornecedor ORDER BY nome_fornecedor ASC");

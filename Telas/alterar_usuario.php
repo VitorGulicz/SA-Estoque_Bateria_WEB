@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         </div>
         <button type="submit">Buscar</button>
     </form>
-
+</br>
     <?php if ($usuario): ?>
         <form action="processa_alteracao_usuario.php" method="POST">
             <input type="hidden" name="id_usuario" value="<?=htmlspecialchars($usuario['id_usuario'])?>">
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
             <input type="email" id="email" name="email" value="<?=htmlspecialchars($usuario['email'])?>" required>
 
             <label for="id_perfil">Perfil:</label>
-            <select id="id_perfil" name="id_perfil">
+            <select id="id_perfil" name="id_perfil" class="select2">
                 <option value="1"<?=$usuario['id_perfil'] == 1 ? 'selected': '' ?>>Administrador</option>
                 <option value="2"<?=$usuario['id_perfil'] == 2 ? 'selected': '' ?>>Secretaria</option>
                 <option value="3"<?=$usuario['id_perfil'] == 3 ? 'selected': '' ?>>Almoxarife</option>

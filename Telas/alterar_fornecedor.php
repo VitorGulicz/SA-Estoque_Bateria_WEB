@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         </div>
         <button type="submit">Buscar</button>
     </form>
-
+    </br>
     <?php if ($fornecedor): ?>
         <form action="processa_alteracao_fornecedor.php" method="POST">
             <input type="hidden" name="id_fornecedor" value="<?=htmlspecialchars($fornecedor['id_fornecedor'])?>">

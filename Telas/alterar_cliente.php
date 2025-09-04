@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         </div>
         <button type="submit">Buscar</button>
     </form>
-
+</br>
     <?php if ($cliente): ?>
         <form action="processa_alteracao_cliente.php" method="POST">
             <input type="hidden" name="id_cliente" value="<?=htmlspecialchars($cliente['id_cliente'])?>">
