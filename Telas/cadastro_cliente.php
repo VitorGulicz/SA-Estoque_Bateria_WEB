@@ -4,7 +4,7 @@ require_once 'conexao.php';
 require_once 'menudrop.php';
 
 
-if($_SESSION['perfil']!= 1){
+if($_SESSION['perfil'] != 1 && $_SESSION['perfil'] !=2){
     echo "Acesso negado";
     exit();
 }
