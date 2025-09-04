@@ -38,11 +38,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Cadastrar Usuario</title>
 
     <!-- CSS externo -->
-    <link rel="stylesheet" href="../CSS/cadastro.css">
-    <link rel="stylesheet" href="../CSS/tabela.css">
-
+    
+    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- JS externo -->
     <script src="../JS/mascara.js"></script>
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
     <h2>Cadastrar Usuario</h2>
@@ -57,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <input type="password" id="senha" name="senha" required>
 
         <label for="id_perfil">Perfil: </label>
-        <select id="id_perfil" name="id_perfil">
+        <select id="id_perfil" name="id_perfil" class="select2">
             <option value="1">Administrador</option>
             <option value="2">Secretaria</option>
             <option value="3">Almoxarife</option>
@@ -73,5 +76,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         ">Cancelar</button>
     </form>
     <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+    <script>
+$(document).ready(function() {
+    $('#id_perfil').select2({
+        placeholder: "Escolha perfil",
+        allowClear: true
+    });
+});
+</script>
 </body>
 </html>
