@@ -64,13 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../CSS/cadastro.css">
+
+
 <title>Cadastro de Produto</title>
 
 <script src="../JS/mascara.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
 
@@ -81,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" id="tipo" name="tipo" required >
 
     <label for="fornecedor">Selecione um fornecedor:</label>
-    <select id="fornecedor" name="fornecedor" style="width:100%;">
+    <select class="select2" id="fornecedor" name="fornecedor" style="width:100%;">
         <option value="">Escolha fornecedor</option>
         <?php foreach ($fornecedores as $f): ?>
             <option value="<?= $f['id_fornecedor'] ?>"><?= htmlspecialchars($f['nome_fornecedor']) ?></option>
