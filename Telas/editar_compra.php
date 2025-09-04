@@ -115,6 +115,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <meta charset="UTF-8">
 <title>Editar Compra</title>
 <link rel="stylesheet" href="../CSS/busca.css">
+<link rel="stylesheet" href="../CSS/cadastro.css">
+
 </head>
 <body>
 <h2>Editar Compra</h2>
@@ -123,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <div class="search-section">
 <label>Pesquisar Compra (ID ou Cliente):</label><br>
 <input type="text" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
-<select id="selectCompra" size="5">
+<select id="selectCompra" size="5" style="width:100%;">
     <option value="">-- Selecionar Compra --</option>
     <?php foreach ($compras as $c): ?>
         <option value="<?= $c['cod_compra'] ?>" <?= ($compra && $compra['cod_compra'] == $c['cod_compra']) ? 'selected' : '' ?>>
@@ -139,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
     <!-- Produto -->
     <label>Produto:</label><br>
     <input type="text" id="searchProduto" placeholder="Pesquisar produto...">
-    <select name="produto" id="produto" size="5" required onchange="atualizarProduto()">
+    <select name="produto" id="produto" class="select2" size="5" required onchange="atualizarProduto()" style="width:100%;">
         <?php foreach($produtos as $p): ?>
             <option value="<?= $p['id_produto'] ?>"
                 data-qtde="<?= $p['qtde'] ?>"
@@ -154,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Cliente -->
     <label>Cliente:</label><br>
-    <select name="cliente" required>
+    <select class="select2" name="cliente" required style="width:100%;">
         <?php foreach($clientes as $c): ?>
             <option value="<?= $c['id_cliente'] ?>" <?= $c['id_cliente']==$compra['cod_cliente'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($c['nome_cliente']) ?>
@@ -165,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Funcionário -->
     <label>Funcionário:</label><br>
-    <select name="funcionario" required>
+    <select name="funcionario" required style="width:100%;">
         <?php foreach($funcionarios as $f): ?>
             <option value="<?= $f['id_funcionario'] ?>" <?= $f['id_funcionario']==$compra['cod_funcionario'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($f['nome_funcionario']) ?>
@@ -176,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Fornecedor -->
     <label>Fornecedor:</label><br>
-    <select name="fornecedor" id="cod_fornecedor" required>
+    <select name="fornecedor" id="cod_fornecedor" required style="width:100%;">
         <?php foreach($fornecedores as $fr): ?>
             <option value="<?= $fr['id_fornecedor'] ?>" <?= $fr['id_fornecedor']==$compra['cod_fornecedor'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($fr['nome_fornecedor']) ?>
@@ -201,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
 
 </div>
-<p><a href="lista_compras.php">Voltar para lista de compras</a></p>
+<p><a href="lista_compras.php" class="back-btn">Voltar para lista de compras</a></p>
         
 <script>
 let precoUnitario = 0;
