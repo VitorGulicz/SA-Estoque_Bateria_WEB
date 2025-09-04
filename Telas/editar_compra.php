@@ -154,6 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Cliente -->
     <label>Cliente:</label><br>
+    <input type="text" id="searchCliente" placeholder="Pesquisar cliente...">
     <select name="cliente" required>
         <?php foreach($clientes as $c): ?>
             <option value="<?= $c['id_cliente'] ?>" <?= $c['id_cliente']==$compra['cod_cliente'] ? 'selected' : '' ?>>

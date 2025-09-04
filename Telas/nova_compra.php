@@ -1,15 +1,15 @@
 <?php
-session_start();
-require_once 'conexao.php';
-require_once 'menudrop.php';
+session_start();// Inicia a sessão
+require_once 'conexao.php'; // Conexão com o banco de dados
+require_once 'menudrop.php';// Importa o menu de navegação
 
-// Verifica perfil de acesso
+// Verifica perfil de acesso (apenas perfil 1 tem acesso)
 if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
     echo "<script>alert('Acesso negado!');window.location.href='principal.php';</script>";
     exit();
 }
 
-// Se o formulário for enviado
+// Se o formulário for enviado (via POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cod_cliente = $_POST['cod_cliente'] ?? null;
     $cod_produto = $_POST['cod_produto'] ?? null;
@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantidade = $_POST['quantidade'] ?? null;
     $vlr_compra = $_POST['vlr_compra'] ?? null;
     $cod_fornecedor = $_POST['cod_fornecedor'] ?? null;
+
+    // Verifica se os campos obrigatórios foram preenchidos
 
     if ($cod_produto && $cod_funcionario && $quantidade && $vlr_compra && $cod_fornecedor) {
         try {
@@ -28,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 VALUES (:cod_cliente, :cod_produto, :cod_funcionario, :quantidade, :vlr_compra, :cod_fornecedor)
             ");
             $stmt->execute([
-                ':cod_cliente' => $cod_cliente ?: null,
+                ':cod_cliente' => $cod_cliente ?: null, // Pode ser nulo
                 ':cod_produto' => $cod_produto,
                 ':cod_funcionario' => $cod_funcionario,
                 ':quantidade' => $quantidade,
@@ -36,26 +38,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':cod_fornecedor' => $cod_fornecedor
             ]);
 
-            // Atualizar estoque
+            // Atualizar o estoque do produto
             $stmt2 = $pdo->prepare("UPDATE produto SET qtde = qtde - :qtd WHERE id_produto = :id");
             $stmt2->execute([
                 ':qtd' => $quantidade,
                 ':id' => $cod_produto
             ]);
 
-            $pdo->commit();
+            $pdo->commit(); // Confirma a transação
             echo "<script>alert('Compra registrada com sucesso!');window.location.href='lista_compras.php';</script>";
             exit();
         } catch (PDOException $e) {
-            $pdo->rollBack();
+            $pdo->rollBack();  // Cancela a transação em caso de erro
             echo "Erro ao registrar compra: " . $e->getMessage();
         }
-    } else {
+    } else {// Se faltar algum campo obrigatório
         echo "<script>alert('Preencha todos os campos obrigatórios!');</script>";
     }
 }
 
-// Busca dados para os selects
+// Busca os dados do banco para preencher os selects
 try {
     $clientes = $pdo->query("SELECT id_cliente, nome_cliente FROM cliente ORDER BY nome_cliente")->fetchAll(PDO::FETCH_ASSOC);
     $produtos = $pdo->query("
@@ -77,7 +79,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Nova Compra</title>
-    <link rel="stylesheet" href="../CSS/cadastro.css">
+    <link rel="stylesheet" href="../CSS/cadastro.css"> <!-- Importa o CSS -->
 </head>
 <body>
     <h2>Registrar Nova Compra</h2>
