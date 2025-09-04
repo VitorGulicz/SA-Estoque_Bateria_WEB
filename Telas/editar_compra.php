@@ -115,6 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <meta charset="UTF-8">
 <title>Editar Compra</title>
 <link rel="stylesheet" href="../CSS/busca.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="../CSS/cadastro.css">
 
 </head>
@@ -125,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <div class="search-section">
 <label>Pesquisar Compra (ID ou Cliente):</label><br>
 <input type="text" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
-<select id="selectCompra" size="5" style="width:100%;">
+<select id="selectCompra" size="5" class="select2" style="width:100%;">
     <option value="">-- Selecionar Compra --</option>
     <?php foreach ($compras as $c): ?>
         <option value="<?= $c['cod_compra'] ?>" <?= ($compra && $compra['cod_compra'] == $c['cod_compra']) ? 'selected' : '' ?>>
@@ -156,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Cliente -->
     <label>Cliente:</label><br>
-    <select class="select2" name="cliente" required style="width:100%;">
+    <select class="select2" name="cliente" class="select2" required style="width:100%;">
         <?php foreach($clientes as $c): ?>
             <option value="<?= $c['id_cliente'] ?>" <?= $c['id_cliente']==$compra['cod_cliente'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($c['nome_cliente']) ?>
@@ -167,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Funcionário -->
     <label>Funcionário:</label><br>
-    <select name="funcionario" required style="width:100%;">
+    <select name="funcionario" required class="select2" style="width:100%;">
         <?php foreach($funcionarios as $f): ?>
             <option value="<?= $f['id_funcionario'] ?>" <?= $f['id_funcionario']==$compra['cod_funcionario'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($f['nome_funcionario']) ?>
@@ -178,7 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 
     <!-- Fornecedor -->
     <label>Fornecedor:</label><br>
-    <select name="fornecedor" id="cod_fornecedor" required style="width:100%;">
+    <select name="fornecedor" id="cod_fornecedor" class="select2" required style="width:100%;">
         <?php foreach($fornecedores as $fr): ?>
             <option value="<?= $fr['id_fornecedor'] ?>" <?= $fr['id_fornecedor']==$compra['cod_fornecedor'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($fr['nome_fornecedor']) ?>
@@ -257,6 +260,14 @@ document.getElementById("searchProduto").addEventListener("keyup", function() {
 });
 
 atualizarProduto();
+</script>
+<script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      width: '100%',
+      minimumResultsForSearch: Infinity // remove a barra de busca, se quiser
+    });
+  });
 </script>
 </body>
 </html>

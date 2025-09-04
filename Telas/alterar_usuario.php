@@ -68,6 +68,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 <!--Certifique-se de que o Java script está sendo carregado corretamente-->
 <script src="../JS/scripts.js"></script>
 <script src="../JS/mascara.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
@@ -92,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
             <input type="email" id="email" name="email" value="<?=htmlspecialchars($usuario['email'])?>" required>
 
             <label for="id_perfil">Perfil:</label>
-            <select id="id_perfil" name="id_perfil" class="select2">
+            <select id="id_perfil" name="id_perfil" class="select2" style="width:100%;">
                 <option value="1"<?=$usuario['id_perfil'] == 1 ? 'selected': '' ?>>Administrador</option>
                 <option value="2"<?=$usuario['id_perfil'] == 2 ? 'selected': '' ?>>Secretaria</option>
                 <option value="3"<?=$usuario['id_perfil'] == 3 ? 'selected': '' ?>>Almoxarife</option>
@@ -113,5 +117,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         <?php endif; ?>
         
         <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+        <script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      width: '100%',
+      minimumResultsForSearch: Infinity // remove a barra de busca, se quiser
+    });
+  });
+</script>
 </body>
 </html>

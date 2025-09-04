@@ -52,6 +52,9 @@ if (!$produto && isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Produto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
@@ -71,7 +74,7 @@ if (!$produto && isset($_GET['id'])) {
         <input type="hidden" name="id_produto" value="<?=htmlspecialchars($produto['id_produto'])?>">
 
         <label for="fornecedor">Fornecedor:</label>
-        <select id="fornecedor" name="fornecedor" required style="width:100%;">
+        <select id="fornecedor" name="fornecedor" class="select2"required style="width:100%;">
             <option value="">Selecione um fornecedor</option>
             <?php
             $stmt_fornecedor = $pdo->query("SELECT id_fornecedor, nome_fornecedor FROM fornecedor ORDER BY nome_fornecedor ASC");
@@ -111,6 +114,13 @@ if (!$produto && isset($_GET['id'])) {
 
 <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 
-
+<script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      width: '100%',
+      minimumResultsForSearch: Infinity // remove a barra de busca, se quiser
+    });
+  });
+</script>
 </body>
 </html>
