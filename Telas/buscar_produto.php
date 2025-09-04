@@ -4,7 +4,7 @@ require_once 'conexao.php';
 require_once 'menudrop.php';
 
 // Verifica perfil de acesso
-if ($_SESSION['perfil'] != 1 && $_SESSION['perfil'] != 2) {
+if ($_SESSION['perfil'] != 1 && $_SESSION['perfil'] != 2 && $_SESSION['perfil']!=3 && $_SESSION['perfil']!=4) {
     echo "<script>alert('Acesso Negado!');window.location.href='principal.php';</script>";
     exit();
 }

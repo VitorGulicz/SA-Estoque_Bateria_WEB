@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="sugestoes"></div>
     <button type="submit">Buscar</button>
 </form>
-
+</br>
 <?php if ($usuario): ?>
 <form method="POST" action="processa_alteracao_funcionario.php">
     <input type="hidden" name="id_funcionario" value="<?=htmlspecialchars($usuario['id_funcionario']); ?>">

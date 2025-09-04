@@ -79,7 +79,8 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Nova Compra</title>
-    <link rel="stylesheet" href="../CSS/cadastro.css"> <!-- Importa o CSS -->
+
+    <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
     <h2>Registrar Nova Compra</h2>
@@ -87,7 +88,7 @@ try {
         <!-- Cliente -->
         <label>Cliente:</label><br>
         <input type="text" id="searchCliente" placeholder="Pesquisar cliente...">
-        <select name="cod_cliente" id="cod_cliente" size="5">
+        <select name="cod_cliente" id="cod_cliente" size="5" class="select2" style="width:100%;">
             <option value="">-- Nenhum --</option>
             <?php foreach($clientes as $c): ?>
                 <option value="<?= $c['id_cliente'] ?>"><?= htmlspecialchars($c['nome_cliente']) ?></option>
@@ -98,7 +99,7 @@ try {
         <!-- Produto -->
         <label>Produto:</label><br>
         <input type="text" id="searchProduto" placeholder="Pesquisar produto...">
-        <select name="cod_produto" id="cod_produto" size="5" required onchange="atualizarProduto()">
+        <select name="cod_produto" id="cod_produto" size="5" required onchange="atualizarProduto()" class="select2" style="width:100%;">
             <?php foreach($produtos as $p): ?>
                 <option 
                     value="<?= $p['id_produto'] ?>"
@@ -124,7 +125,7 @@ try {
 
         <!-- Fornecedor -->
         <label>Fornecedor:</label><br>
-        <select name="cod_fornecedor" id="cod_fornecedor" required>
+        <select name="cod_fornecedor" id="cod_fornecedor" required class="select2" style="width:100%;">
             <option value="">-- Selecione --</option>
             <?php foreach($fornecedores as $f): ?>
                 <option value="<?= $f['id_fornecedor'] ?>"><?= htmlspecialchars($f['nome_fornecedor']) ?></option>
@@ -190,5 +191,13 @@ try {
 
         atualizarProduto();
     </script>
+    <script>
+  $(document).ready(function() {
+    $('.select2').select2({
+      width: '100%',
+      minimumResultsForSearch: Infinity // remove a barra de busca, se quiser
+    });
+  });
+</script>
 </body>
 </html>

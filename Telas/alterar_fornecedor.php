@@ -5,7 +5,7 @@ require_once 'menudrop.php';
 
 //VERIFICA SE O USUÁRIO TEM PERMISSÃO DE ADM
 
-if($_SESSION['perfil']!= 1){
+if($_SESSION['perfil']!= 1 && $_SESSION['perfil']!=2 && $_SESSION['perfil']!=3){
     echo "<script>alert('Acesso Negado!');window.location.href='principal.php';</script>";
     exit();
 }
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         </div>
         <button type="submit">Buscar</button>
     </form>
-
+    </br>
     <?php if ($fornecedor): ?>
         <form action="processa_alteracao_fornecedor.php" method="POST">
             <input type="hidden" name="id_fornecedor" value="<?=htmlspecialchars($fornecedor['id_fornecedor'])?>">
