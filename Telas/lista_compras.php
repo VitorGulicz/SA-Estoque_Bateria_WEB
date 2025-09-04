@@ -78,7 +78,7 @@ try {
 </head>
 <body>
     <h2>Lista de Compras</h2>
-    <p><a href="nova_compra.php" class="button" style="background-color:green;">Registrar nova compra</a></p>
+
 
     <table>
         <tr>
@@ -103,13 +103,10 @@ try {
                     <td><?= $c['quantidade'] ?></td>
                     <td>R$ <?= number_format($c['vlr_compra'], 2, ',', '.') ?></td>
                     <td>
-                        <div class="action-buttons">
-                            <a href="editar_compra.php?id=<?= $c['cod_compra'] ?>" class="button">Editar</a>
-                            <form method="post" style="margin:0;" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
+
+                            <a href="editar_compra.php?id=<?= $c['cod_compra'] ?>"  class="action-btn edit-btn " onsubmit="return confirm('Deseja realmente excluir esta compra?');">
                                 <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
-                                <button type="submit" class="button">Excluir</button>
                             </form>
-                        </div>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -119,5 +116,6 @@ try {
             </tr>
         <?php endif; ?>
     </table>
+    <p><a href="nova_compra.php" class="back-btn">🛒 Registrar nova compra</a></p>
 </body>
 </html>
