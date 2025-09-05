@@ -128,6 +128,6 @@ try {
     </table>
 
     <!-- Botão para cadastrar uma nova compra -->
-    <p><a href="principal.php" class="back-btn">🛒 Registrar nova compra</a></p>
+    <p><a href="principal.php" class="back-btn">Voltar ao Menu Principal</a></p>
 </body>
 </html>

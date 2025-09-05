@@ -137,6 +137,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
     color: #fff !important;
     background-color: #333 !important;
 }
+/* Select nativo */
+select {
+  background-color: #333 !important;
+  color: #fff !important;
+  border: 1px solid #555 !important;
+}
+
+/* Select2: área da seleção */
+.select2-container--default .select2-selection--single {
+  background-color: #333 !important;
+  color: #fff !important;
+  border: 1px solid #555 !important;
+}
+
+/* Texto selecionado no Select2 */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #fff !important;
+}
+
+/* Opções da lista suspensa */
+.select2-results__option {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+/* Opção selecionada / destacada */
+.select2-results__option--highlighted {
+  background-color: #555 !important;
+  color: #fff !important;
+}
+
+/* Campo de busca dentro do Select2 */
+.select2-search__field {
+  background-color: #333 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
 </style>
 </head>
 <body>
@@ -148,14 +186,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <label>Pesquisar Compra (ID ou Cliente):</label><br>
 <input type="hidden" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
 <select id="selectCompra" size="5" class="select2" style="width:100%;">
-    <option value="">-- Selecionar Compra --</option>
+    <option value="" <?= !$compra ? 'selected' : '' ?>>-- Selecionar Compra --</option>
     <?php foreach ($compras as $c): ?>
         <option value="<?= $c['cod_compra'] ?>" <?= ($compra && $compra['cod_compra'] == $c['cod_compra']) ? 'selected' : '' ?>>
-    ID: <?= $c['cod_compra'] ?> - <?= htmlspecialchars($c['nome_cliente']) ?> - Data: <?= date('d/m/Y', strtotime($c['data_compra'])) ?>
-</option>
-
+            ID: <?= $c['cod_compra'] ?> - <?= htmlspecialchars($c['nome_cliente']) ?> - Data: <?= date('d/m/Y', strtotime($c['data_compra'])) ?>
+        </option>
     <?php endforeach; ?>
 </select>
+
 <button type="button" onclick="buscarCompra()">Buscar Compra</button>
 <br><br>
     </div>
