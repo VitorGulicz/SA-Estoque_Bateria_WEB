@@ -58,15 +58,12 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
     <div class="chart">
       <h3>Estoque por Marca</h3>
       <canvas id="estoqueMarca"></canvas>
-    </div>
+    </div> 
     <div class="chart">
       <h3>Compras por Cliente</h3>
       <canvas id="comprasClientes"></canvas>
     </div>
   </div>
-  <div style="width:400px; height:400px; margin:auto;">
-  <canvas id="comprasClientes"></canvas>
-</div>
 
   <script>
     // Estoque por Marca
@@ -76,42 +73,41 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
       data: {
         labels: <?= json_encode(array_column($estoquePorMarca, 'marca')) ?>,
         datasets: [{
-          label: 'Qtd Estoque',
+          label: 'Quantidade no Estoque',
           data: <?= json_encode(array_map('intval', array_column($estoquePorMarca, 'qtde'))) ?>,
           backgroundColor: 'rgba(54, 162, 235, 0.7)'
         }]
       }
     });
 
-// Compras por Cliente (pizza menor)
-const ctx2 = document.getElementById('comprasClientes');
-new Chart(ctx2, {
-  type: 'pie',
-  data: {
-    labels: <?= json_encode(array_column($comprasClientes, 'nome_cliente')) ?>,
-    datasets: [{
-      label: 'Compras',
-      data: <?= json_encode(array_map('intval', array_column($comprasClientes, 'total_itens'))) ?>,
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.7)',
-        'rgba(54, 162, 235, 0.7)',
-        'rgba(255, 206, 86, 0.7)',
-        'rgba(75, 192, 192, 0.7)',
-        'rgba(153, 102, 255, 0.7)'
-      ]
-    }]
-  },
-  options: {
-        responsive: false, // importante para definir o tamanho manualmente
-        maintainAspectRatio: false, // permite que o tamanho do canvas seja fixo
+    // Compras por Cliente (pizza menor)
+    const ctx2 = document.getElementById('comprasClientes');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: <?= json_encode(array_column($comprasClientes, 'nome_cliente')) ?>,
+        datasets: [{
+          label: 'Compras',
+          data: <?= json_encode(array_map('intval', array_column($comprasClientes, 'total_itens'))) ?>,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 206, 86, 0.7)',
+            'rgba(75, 192, 192, 0.7)',
+            'rgba(153, 102, 255, 0.7)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
         plugins: {
-            legend: {
-                position: 'top',
-            }
+          legend: {
+            position: 'top',
+          }
         }
-    }
-});
-
+      }
+    });
   </script>
 </body>
 </html>
