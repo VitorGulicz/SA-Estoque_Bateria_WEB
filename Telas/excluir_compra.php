@@ -74,12 +74,16 @@ try {
     <link rel="stylesheet" href="../CSS/busca.css"><!-- Importa o CSS -->
 </head>
 <body>
-    <h2>Lista de Compras</h2>
+<div class="container">
+    <h2>Excluir Compras</h2>
 
     <!-- Exibe mensagens de sucesso ou erro -->
     <?php if (!empty($msg)) echo "<p><strong>$msg</strong></p>"; ?>
 
     <!-- Tabela com as compras -->
+
+        <?php if ($compras): ?>
+            <div class="table-container">
     <table>
         <tr>
             <th>ID</th>
@@ -91,7 +95,6 @@ try {
             <th>Fornecedor</th>
             <th>Ações</th>
         </tr>
-        <?php if ($compras): ?>
             <?php foreach ($compras as $c): ?>
                 <tr>
                     <td><?= $c['cod_compra'] ?></td>
@@ -109,11 +112,15 @@ try {
                         </form>
                     </td>
                 </tr>
+            </div>
             <?php endforeach; ?>
         <?php else: ?>
             <!-- Caso não existam compras -->
             <tr><td colspan="8">Nenhuma compra encontrada.</td></tr>
         <?php endif; ?>
     </table>
+    </div>
+    <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
+        
 </body>
 </html>

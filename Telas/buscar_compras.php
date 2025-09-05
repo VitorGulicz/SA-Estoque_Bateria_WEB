@@ -81,9 +81,14 @@ try {
     <link rel="stylesheet" href="../CSS/busca.css"><!-- Importa o CSS -->
 </head>
 <body>
+<div class="container">
     <h2>Lista de Compras</h2>
 
-    <!-- ======================== TABELA DE COMPRAS ======================== -->
+    <!-- Tabela que lista todas as compras -->
+    
+        <!-- Verifica se existem compras -->
+        <?php if ($compras): ?>
+            <div class="table-container">
     <table>
         <tr>
             <th>ID Compra</th>
@@ -97,8 +102,6 @@ try {
             <th>Ações</th>
         </tr>
 
-        <!-- Verifica se existem compras -->
-        <?php if ($compras): ?>
             <?php foreach ($compras as $c): ?>
                 <tr>
                     <td><?= $c['cod_compra'] ?></td>
@@ -123,9 +126,10 @@ try {
                 <td colspan="9">Nenhuma compra registrada.</td>
             </tr>
         <?php endif; ?>
+        <div>
     </table>
-
-    <!-- Botão para voltar ao menu principal -->
+        </div>
+    <!-- Botão para cadastrar uma nova compra -->
     <p><a href="principal.php" class="back-btn">Voltar ao Menu Principal</a></p>
 </body>
 </html>
