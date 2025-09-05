@@ -106,10 +106,25 @@ try {
                     <td><?= htmlspecialchars($c['nome_fornecedor']) ?></td>
                     <td>
                         <!-- Formulário para excluir compra -->
-                        <form method="post" style="display:inline;" onsubmit="return confirm('Deseja realmente excluir esta compra?');">
-                            <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
-                            <button type="submit" class="button">🗑️</button>
-                        </form>
+                        <button type="button" class="button" onclick="if(confirm('Deseja realmente excluir esta compra?')) { enviarExclusao(<?= $c['cod_compra'] ?>); }">🗑️</button>
+
+<script>
+function enviarExclusao(id) {
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.style.display = 'inline';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'excluir';
+    input.value = id;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+}
+</script>
+
                     </td>
                 </tr>
             </div>
