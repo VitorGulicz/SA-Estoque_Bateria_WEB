@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <!-- Pesquisa de compras -->
 <div class="search-section">
 <label>Pesquisar Compra (ID ou Cliente):</label><br>
-<input type="text" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
+<input type="hidden" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
 <select id="selectCompra" size="5" class="select2" style="width:100%;">
     <option value="">-- Selecionar Compra --</option>
     <?php foreach ($compras as $c): ?>
