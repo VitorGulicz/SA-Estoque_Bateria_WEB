@@ -52,6 +52,7 @@ try {
             c.cod_compra,
             c.quantidade,
             c.vlr_compra,
+            c.data_compra,
             cl.nome_cliente,
             p.tipo AS produto_tipo,
             f.nome_funcionario,
@@ -92,6 +93,7 @@ try {
             <th>Fornecedor</th>
             <th>Quantidade</th>
             <th>Valor</th>
+            <th>Data da Compra</th>
             <th>Ações</th>
         </tr>
 
@@ -106,9 +108,10 @@ try {
                     <td><?= htmlspecialchars($c['nome_fornecedor'] ?? '—') ?></td>
                     <td><?= $c['quantidade'] ?></td>
                     <td>R$ <?= number_format($c['vlr_compra'], 2, ',', '.') ?></td>
+                    <td><?= date('d/m/Y', strtotime($c['data_compra'])) ?></td>
                     <td>
                         <!-- Link para editar compra -->
-                        <a href="editar_compra.php?id=<?= $c['cod_compra'] ?>"  
+                        <a href="alterar_compra.php?id=<?= $c['cod_compra'] ?>"  
                            class="action-btn edit-btn"
                            onsubmit="return confirm('Deseja realmente excluir esta compra?');">
                             <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
@@ -119,12 +122,12 @@ try {
         <?php else: ?>
             <!-- Caso não existam compras -->
             <tr>
-                <td colspan="8">Nenhuma compra registrada.</td>
+                <td colspan="9">Nenhuma compra registrada.</td>
             </tr>
         <?php endif; ?>
     </table>
 
     <!-- Botão para cadastrar uma nova compra -->
-    <p><a href="nova_compra.php" class="back-btn">🛒 Registrar nova compra</a></p>
+    <p><a href="principal.php" class="back-btn">🛒 Registrar nova compra</a></p>
 </body>
 </html>

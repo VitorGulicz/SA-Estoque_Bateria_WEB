@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
 
             $pdo->commit(); // Confirma a transação
-            echo "<script>alert('Compra registrada com sucesso!');window.location.href='lista_compras.php';</script>";
+            echo "<script>alert('Compra registrada com sucesso!');window.location.href='cadastro_compra.php';</script>";
             exit();
         } catch (PDOException $e) {
             $pdo->rollBack();  // Cancela a transação em caso de erro
@@ -79,7 +79,28 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Nova Compra</title>
-
+    <STYLE>
+    #searchCompra, .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #fff !important;
+    background-color: #333 !important;
+}
+.select2-container--default .select2-selection--single {
+    background-color: #333 !important;
+    border: 1px solid #555 !important;
+}
+.select2-results__option {
+    color: #fff !important;
+    background-color: #333 !important;
+}
+.select2-results__option--highlighted {
+    background-color: #555 !important;
+    color: #fff !important;
+}
+.select2-search__field {
+    color: #fff !important;
+    background-color: #333 !important;
+}
+</style>
     <link rel="stylesheet" href="../CSS/cadastro.css">
 </head>
 <body>
