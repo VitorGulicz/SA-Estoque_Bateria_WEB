@@ -11,7 +11,7 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
 
 // Busca todas as compras com cliente
 $compras = $pdo->query("
-    SELECT c.cod_compra, cl.nome_cliente
+    SELECT c.cod_compra, c.data_compra, cl.nome_cliente
     FROM compra c
     LEFT JOIN cliente cl ON c.cod_cliente = cl.id_cliente
     ORDER BY c.cod_compra DESC
@@ -132,8 +132,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
     <option value="">-- Selecionar Compra --</option>
     <?php foreach ($compras as $c): ?>
         <option value="<?= $c['cod_compra'] ?>" <?= ($compra && $compra['cod_compra'] == $c['cod_compra']) ? 'selected' : '' ?>>
-            ID: <?= $c['cod_compra'] ?> - <?= htmlspecialchars($c['nome_cliente']) ?>
-        </option>
+    ID: <?= $c['cod_compra'] ?> - <?= htmlspecialchars($c['nome_cliente']) ?> - Data: <?= date('d/m/Y', strtotime($c['data_compra'])) ?>
+</option>
+
     <?php endforeach; ?>
 </select>
 <button type="button" onclick="buscarCompra()">Buscar Compra</button>
