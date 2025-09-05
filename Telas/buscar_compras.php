@@ -3,49 +3,50 @@ session_start(); // Inicia a sessão para verificar login e permissões
 require_once 'conexao.php'; // Conexão com o banco de dados
 require_once 'menudrop.php'; // Inclui o menu suspenso de navegação
 
-// Verifica perfil de acesso (somente perfil 1 pode acessar)
+// ======================== VERIFICA PERFIL ======================== //
+// Somente usuários com perfil 1 podem acessar
 if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
     echo "<script>alert('Acesso negado!');window.location.href='principal.php';</script>";
-    exit(); // Finaliza execução se não tiver permissão
+    exit();
 }
 
-// Excluir compra
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['excluir'])) {
-    $cod_compra = intval($_POST['excluir']); // Pega o ID da compra enviada no POST
-    try {
-        $pdo->beginTransaction(); // Inicia uma transação no banco
+// ======================== EXCLUIR COMPRA ======================== //
+// Captura o ID da compra enviado via GET (links da tabela)
+if (isset($_GET['id'])) {
+    $cod_compra = intval($_GET['id']); // Converte para inteiro por segurança
 
-        // Busca compra no banco para restaurar o estoque do produto
+    try {
+        $pdo->beginTransaction(); // Inicia transação
+
+        // Busca a compra para restaurar o estoque do produto
         $stmt = $pdo->prepare("SELECT cod_produto, quantidade FROM compra WHERE cod_compra = :id");
         $stmt->execute(['id' => $cod_compra]);
         $compra = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($compra) {
-            // Atualiza o estoque devolvendo a quantidade do produto
+            // Atualiza estoque do produto
             $stmt = $pdo->prepare("UPDATE produto SET qtde = qtde + :quantidade WHERE id_produto = :id_produto");
             $stmt->execute([
                 'quantidade' => $compra['quantidade'],
                 'id_produto' => $compra['cod_produto']
             ]);
 
-            // Exclui a compra do banco de dados
+            // Exclui a compra do banco
             $stmt = $pdo->prepare("DELETE FROM compra WHERE cod_compra = :id");
             $stmt->execute(['id' => $cod_compra]);
 
-            $pdo->commit(); // Confirma a transação
-            echo "<script>alert('Compra excluída com sucesso!');</script>";
+            $pdo->commit(); // Confirma transação
+            echo "<script>alert('Compra excluída com sucesso!'); window.location.href='".$_SERVER['PHP_SELF']."';</script>";
         } else {
-            // Caso a compra não seja encontrada
             throw new Exception("Compra não encontrada!");
         }
     } catch (Exception $e) {
-        // Em caso de erro, desfaz a transação
-        $pdo->rollBack();
-        echo "<script>alert('Erro ao excluir compra: " . $e->getMessage() . "');</script>";
+        $pdo->rollBack(); // Desfaz alterações em caso de erro
+        echo "<script>alert('Erro ao excluir compra: ".$e->getMessage()."');</script>";
     }
 }
 
-// Busca todas as compras no banco
+// ======================== BUSCA TODAS AS COMPRAS ======================== //
 try {
     $stmt = $pdo->prepare("
         SELECT 
@@ -65,9 +66,8 @@ try {
         ORDER BY c.cod_compra DESC
     ");
     $stmt->execute();
-    $compras = $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna todas as compras como array
+    $compras = $stmt->fetchAll(PDO::FETCH_ASSOC); // Array com todas as compras
 } catch (PDOException $e) {
-    // Se ocorrer erro na consulta
     echo "Erro ao buscar compras: " . $e->getMessage();
     exit();
 }
@@ -81,9 +81,14 @@ try {
     <link rel="stylesheet" href="../CSS/busca.css"><!-- Importa o CSS -->
 </head>
 <body>
+<div class="container">
     <h2>Lista de Compras</h2>
 
     <!-- Tabela que lista todas as compras -->
+    
+        <!-- Verifica se existem compras -->
+        <?php if ($compras): ?>
+            <div class="table-container">
     <table>
         <tr>
             <th>ID Compra</th>
@@ -97,8 +102,6 @@ try {
             <th>Ações</th>
         </tr>
 
-        <!-- Verifica se existem compras -->
-        <?php if ($compras): ?>
             <?php foreach ($compras as $c): ?>
                 <tr>
                     <td><?= $c['cod_compra'] ?></td>
@@ -111,23 +114,22 @@ try {
                     <td><?= date('d/m/Y', strtotime($c['data_compra'])) ?></td>
                     <td>
                         <!-- Link para editar compra -->
-                        <a href="editar_compra.php?id=<?= $c['cod_compra'] ?>"  
-                           class="action-btn edit-btn"
-                           onsubmit="return confirm('Deseja realmente excluir esta compra?');">
-                            <input type="hidden" name="excluir" value="<?= $c['cod_compra'] ?>">
-                        </form>
+                        <a href="alterar_compra.php?id=<?= htmlspecialchars($c['cod_compra']) ?>" class="action-btn edit-btn"></a>
+
+                        <!-- Link para excluir compra -->
+                        <a href="?id=<?= htmlspecialchars($c['cod_compra']) ?>" class="action-btn delete-btn" onclick="return confirm('Tem certeza que deseja excluir esta compra?')"></a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
-            <!-- Caso não existam compras -->
             <tr>
                 <td colspan="9">Nenhuma compra registrada.</td>
             </tr>
         <?php endif; ?>
+        <div>
     </table>
-
+        </div>
     <!-- Botão para cadastrar uma nova compra -->
-    <p><a href="nova_compra.php" class="back-btn">🛒 Registrar nova compra</a></p>
+    <p><a href="principal.php" class="back-btn">Voltar ao Menu Principal</a></p>
 </body>
 </html>

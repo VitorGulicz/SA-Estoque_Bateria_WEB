@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
 
             $pdo->commit(); // Confirma a transação
-            echo "<script>alert('Compra registrada com sucesso!');window.location.href='lista_compras.php';</script>";
+            echo "<script>alert('Compra registrada com sucesso!');window.location.href='cadastro_compra.php';</script>";
             exit();
         } catch (PDOException $e) {
             $pdo->rollBack();  // Cancela a transação em caso de erro
