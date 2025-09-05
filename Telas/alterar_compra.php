@@ -11,7 +11,7 @@ if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
 
 // ======================== BUSCA LISTA DE COMPRAS ======================== //
 $compras = $pdo->query("
-    SELECT c.cod_compra, cl.nome_cliente
+    SELECT c.cod_compra, c.data_compra, cl.nome_cliente
     FROM compra c
     LEFT JOIN cliente cl ON c.cod_cliente = cl.id_cliente
     ORDER BY c.cod_compra DESC
@@ -143,21 +143,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($compra)) {
 <h2>Alterar Compra</h2>
 
 <div class="container">
-    <!-- PESQUISAR COMPRA -->
-    <div class="search-section">
-        <label>Pesquisar Compra (ID ou Cliente):</label><br>
-        <input type="hidden" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
+<!-- Pesquisa de compras -->
+<div class="search-section">
+<label>Pesquisar Compra (ID ou Cliente):</label><br>
+<input type="hidden" id="searchCompra" placeholder="Digite ID ou nome do cliente...">
+<select id="selectCompra" size="5" class="select2" style="width:100%;">
+    <option value="">-- Selecionar Compra --</option>
+    <?php foreach ($compras as $c): ?>
+        <option value="<?= $c['cod_compra'] ?>" <?= ($compra && $compra['cod_compra'] == $c['cod_compra']) ? 'selected' : '' ?>>
+    ID: <?= $c['cod_compra'] ?> - <?= htmlspecialchars($c['nome_cliente']) ?> - Data: <?= date('d/m/Y', strtotime($c['data_compra'])) ?>
+</option>
 
-        <select id="selectCompra" size="5" class="select2" style="width:100%;">
-            <option value="">-- Selecionar Compra --</option>
-            <?php foreach ($compras as $c): ?>
-                <option value="<?= $c['cod_compra'] ?>" <?= ($compra && $compra['cod_compra'] == $c['cod_compra']) ? 'selected' : '' ?>>
-                    ID: <?= $c['cod_compra'] ?> - <?= htmlspecialchars($c['nome_cliente']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <button type="button" onclick="buscarCompra()">Buscar Compra</button>
-        <br><br>
+    <?php endforeach; ?>
+</select>
+<button type="button" onclick="buscarCompra()">Buscar Compra</button>
+<br><br>
     </div>
 
     <?php if($compra): ?>
