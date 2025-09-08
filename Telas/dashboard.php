@@ -14,18 +14,19 @@ $res = $pdo->query("SELECT marca, SUM(qtde) AS qtde FROM produto GROUP BY marca"
 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
     $estoquePorMarca[] = $row;
 }
-
 // Compras por cliente
-$comprasClientes = [];
+// Compras por funcionário
+$comprasFuncionarios = [];
 $res = $pdo->query("
-    SELECT c.nome_cliente, COALESCE(SUM(co.quantidade),0) AS total_itens
-    FROM cliente c
-    LEFT JOIN compra co ON co.cod_cliente = c.id_cliente
-    GROUP BY c.nome_cliente
+    SELECT f.nome_funcionario, COALESCE(SUM(co.quantidade),0) AS total_itens
+    FROM funcionario f
+    LEFT JOIN compra co ON co.cod_funcionario = f.id_funcionario
+    GROUP BY f.nome_funcionario
 ");
 while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
-    $comprasClientes[] = $row;
+    $comprasFuncionarios[] = $row;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,6 +34,7 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
   <meta charset="UTF-8">
   <title>Dashboard VGM Power</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../CSS/cadastro.css">
   <style>
     body { font-family: Arial, sans-serif; background: #111; color: #eee; margin: 20px; }
     .cards { display: flex; gap: 20px; flex-wrap: wrap; }
@@ -43,6 +45,8 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
 </head>
 <body>
   <h1>📊 Dashboard - Loja de Baterias</h1>
+  
+  
 
   <!-- KPIs -->
   <div class="cards">
@@ -60,9 +64,11 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
       <canvas id="estoqueMarca"></canvas>
     </div> 
     <div class="chart">
-      <h3>Compras por Cliente</h3>
-      <canvas id="comprasClientes"></canvas>
+      <h3>Compras por Funcionário</h3>
+      <canvas id="comprasFuncionarios"></canvas>
     </div>
+  </div>
+
   </div>
 
   <script>
@@ -80,34 +86,32 @@ while ($row = $res->fetch(PDO::FETCH_ASSOC)) {
       }
     });
 
-    // Compras por Cliente (pizza menor)
-    const ctx2 = document.getElementById('comprasClientes');
-    new Chart(ctx2, {
-      type: 'pie',
-      data: {
-        labels: <?= json_encode(array_column($comprasClientes, 'nome_cliente')) ?>,
-        datasets: [{
-          label: 'Compras',
-          data: <?= json_encode(array_map('intval', array_column($comprasClientes, 'total_itens'))) ?>,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.7)',
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(255, 206, 86, 0.7)',
-            'rgba(75, 192, 192, 0.7)',
-            'rgba(153, 102, 255, 0.7)'
-          ]
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          }
-        }
-      }
-    });
+// Compras por Funcionário (pizza menor)
+const ctx2 = document.getElementById('comprasFuncionarios');
+new Chart(ctx2, {
+  type: 'pie',
+  data: {
+    labels: <?= json_encode(array_column($comprasFuncionarios, 'nome_funcionario')) ?>,
+    datasets: [{
+      label: 'Compras',
+      data: <?= json_encode(array_map('intval', array_column($comprasFuncionarios, 'total_itens'))) ?>,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)'
+      ]
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true
+  }
+});
+
+    
   </script>
 </body>
+<a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>
 </html>
