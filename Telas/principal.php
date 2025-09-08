@@ -71,9 +71,9 @@ require_once 'menudrop2.php';
                 </div>
             </div>
             <div class="dashboard">
-                    <a href="dashboard.php">dashboard</a>
-                    <h3>Ma</h3>
-                    <p>Teste e revisão completa</p>
+                    <a href="dashboard.php">Dashboard</a>
+                    <br/><br/>
+                    
                 </div>
         </div>
     </main>
