@@ -9,30 +9,29 @@ if ($_SESSION['perfil'] != 1 && $_SESSION['perfil'] != 2) {
     exit();
 }
 
-// Inicializa a variável do usuário 
+//INICIALIZA AS VARIAVEIS
 $usuario = null;
 
-// Busca todos os usuarios cadastrados em ordem alfabética
-$sql = "SELECT * FROM funcionario ORDER BY nome_funcionario ASC";
+//Busca todos os fornecedor cadastrados em ordem alfabetica
+$sql="SELECT * from funcionario order by nome_funcionario ASC";
 $stmt = $pdo->prepare($sql);
-$stmt->execute();
+$stmt ->execute();
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Se um id for enviado via GET, busca o usuário correspondente
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id_usuario = $_GET['id'];
+//SE um id for passado via get, exclui o fornecedor
+if(isset($_GET['id']) && is_numeric($_GET['id'])){
+    $id_funcionario = $_GET['id'];
 
-    // exclui o usuario do banco de dados
-    $sql = "DELETE FROM funcionario WHERE id_funcionario = :id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':id', $id_usuario, PDO::PARAM_INT);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        echo "<script>alert('Funcionario excluído com sucesso!');window.location.href='excluir_funcionario.php';</script>";
-    } else {
-        echo "<script>alert('Erro ao excluir funcionario.');</script>";
-        exit();
+    try {
+        $stmt = $pdo->prepare("DELETE FROM funcionario WHERE id_funcionario = :id");
+        $stmt->execute([':id' => $id_funcionario]);
+        echo "<script>alert('Funcionario excluído com sucesso!');window.location.href='buscar_funcionario.php';</script>";
+    } catch (PDOException $e) {
+        if ($e->getCode() == 23000) {
+            echo "<script>alert('Não é possível excluir este funcionario porque há compras vinculadas a ele.');window.location.href='buscar_funcionario.php';</script>";
+        } else {
+            echo "Erro: " . $e->getMessage();
+        }
     }
 }
 ?>

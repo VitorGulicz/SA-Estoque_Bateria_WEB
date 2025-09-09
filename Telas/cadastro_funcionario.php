@@ -76,8 +76,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         <label for="cargo">Cargo:</label>
         <input type="text" id="cargo" name="cargo" required>
         
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
 
        <label for="salario">Salário:</label>
         <input type="number" id="salario" name="salario" required>

@@ -11,6 +11,7 @@ if ($_SESSION['perfil'] != 1 && $_SESSION['perfil']!=2){
 if ($_SERVER["REQUEST_METHOD"] =="POST"){
     $id_funcionario   = $_POST["id_funcionario"];
     $nome_funcionario = $_POST["nome_funcionario"];
+    $cpf         = $_POST["cpf"];
     $endereco         = $_POST["endereco"];
     $telefone         = $_POST["telefone2"];
     $email            = $_POST["email"];
@@ -21,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST"){
     // ATUALIZA OS DADOS DO FUNCIONÁRIO
     $sql = "UPDATE funcionario 
             SET nome_funcionario = :nome_funcionario, 
+                cpf = :cpf, 
                 endereco = :endereco, 
                 telefone = :telefone, 
                 email = :email,
@@ -31,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST"){
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome_funcionario',$nome_funcionario);
+    $stmt->bindParam(':cpf',$cpf);
     $stmt->bindParam(':endereco',$endereco);
     $stmt->bindParam(':telefone',$telefone);
     $stmt->bindParam(':email',$email);

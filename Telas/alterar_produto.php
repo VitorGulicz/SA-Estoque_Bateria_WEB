@@ -105,7 +105,7 @@ if (!$produto && isset($_GET['id'])) {
         <input type="text" step="0.01" id="preco" name="preco" value="<?=htmlspecialchars($produto['preco'])?>" required>
 
         <label for="validade">Validade:</label>
-        <input type="text" id="validade" name="validade" value="<?=htmlspecialchars($produto['validade'])?>" maxlength="10" placeholder="dd/mm/aaaa" onkeypress="data1(this, event)">
+        <input type="date" id="validade" name="validade" value="<?=htmlspecialchars($produto['validade'])?>" maxlength="10" placeholder="dd/mm/aaaa" onkeypress="data1(this, event)">
 
         <button type="submit">Alterar</button>
         <button type="reset">Cancelar</button>

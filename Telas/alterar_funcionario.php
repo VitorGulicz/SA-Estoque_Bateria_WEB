@@ -10,6 +10,7 @@ if ($_SESSION['perfil'] != 1 && $_SESSION['perfil'] != 2) {
 
 $usuario = null;
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST['busca_funcionario'])) {
         $busca = trim($_POST['busca_funcionario']);
@@ -31,6 +32,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Funcionario não encontrado!');</script>";
         }
     }
+} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (!empty($_GET['id'])) {
+        $busca = trim($_GET["id"]);
+
+    if(is_numeric($busca)) {
+        $sql = "SELECT * FROM funcionario WHERE id_funcionario = :busca";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':busca' ,$busca,PDO::PARAM_INT);
+    } else {
+        $sql = "SELECT * FROM funcionario WHERE nome_funcionario LIKE :busca_nome";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':busca_nome', "%$busca%", PDO::PARAM_STR);
+    }
+    $stmt->execute();
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if(!$usuario){
+        echo "<script>alert('Funcionario não encontrado!');</script>";
+    }
+}
 }
 ?>
 
@@ -44,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../CSS/cadastro.css">
     <!-- JS externos -->
     <script src="../JS/scripts.js"></script>
-    <script src="../JS/mascaras.js"></script>
+    <script src="../JS/mascara.js"></script>
 </head>
 <body>
 <h2>Alterar Funcionario</h2>
@@ -65,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" id="nome_funcionario" name="nome_funcionario" value="<?=htmlspecialchars($usuario['nome_funcionario']); ?>" required onkeypress="mascara(this, nome)">
 
     <label for="cpf">CPF:</label>
-    <input type="text" id="cpf" name="cpf" value="<?=htmlspecialchars($usuario['cpf']); ?>" required onkeypress="mascara(this, cpf)" maxlength="14">
+    <input type="text" id="cpf" name="cpf" value="<?=htmlspecialchars($usuario['cpf']); ?>" required onkeypress="mascara(this, mascaraCPF)" maxlength="14">
 
     <label for="endereco">Endereço:</label>
     <input type="text" id="endereco" name="endereco" value="<?=htmlspecialchars($usuario['endereco']); ?>" required>

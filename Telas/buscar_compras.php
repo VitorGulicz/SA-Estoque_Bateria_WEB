@@ -71,6 +71,57 @@ try {
     echo "Erro ao buscar compras: " . $e->getMessage();
     exit();
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["busca"])) {
+    $busca = trim($_POST["busca"]);
+
+    if (is_numeric($busca)) {
+        $sql = "
+            SELECT 
+                c.cod_compra,
+                c.quantidade,
+                c.vlr_compra,
+                c.data_compra,
+                cl.nome_cliente,
+                p.tipo AS produto_tipo,
+                f.nome_funcionario,
+                fr.nome_fornecedor
+            FROM compra c
+            LEFT JOIN cliente cl ON c.cod_cliente = cl.id_cliente
+            LEFT JOIN produto p ON c.cod_produto = p.id_produto
+            LEFT JOIN funcionario f ON c.cod_funcionario = f.id_funcionario
+            LEFT JOIN fornecedor fr ON c.cod_fornecedor = fr.id_fornecedor
+            WHERE c.cod_compra = :busca
+            ORDER BY cl.nome_cliente ASC
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':busca', $busca, PDO::PARAM_INT);
+    } else {
+        $sql = "
+            SELECT 
+                c.cod_compra,
+                c.quantidade,
+                c.vlr_compra,
+                c.data_compra,
+                cl.nome_cliente,
+                p.tipo AS produto_tipo,
+                f.nome_funcionario,
+                fr.nome_fornecedor
+            FROM compra c
+            LEFT JOIN cliente cl ON c.cod_cliente = cl.id_cliente
+            LEFT JOIN produto p ON c.cod_produto = p.id_produto
+            LEFT JOIN funcionario f ON c.cod_funcionario = f.id_funcionario
+            LEFT JOIN fornecedor fr ON c.cod_fornecedor = fr.id_fornecedor
+            WHERE cl.nome_cliente LIKE :busca_nome
+            ORDER BY cl.nome_cliente ASC
+        ";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':busca_nome', $busca . '%', PDO::PARAM_STR);
+    }
+
+    $stmt->execute();
+    $compras = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +134,13 @@ try {
 <body>
 <div class="container">
     <h2>Lista de Compras</h2>
+    <div class="search-section">
+    <form action="buscar_compras.php" method="POST">
+        <label for="busca">Digite o id ou NOME(opcional):</label>
+        <input type="text" id="busca" name="busca" placeholder="Digite o ID ou nome do cliente...">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
 
     <!-- Tabela que lista todas as compras -->
     

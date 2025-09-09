@@ -83,7 +83,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?=htmlspecialchars($usuario['cargo']); ?></td>
                                 <td>R$ <?=number_format($usuario['salario'], 2, ',', '.'); ?></td>
                                 <td>
-                                    <a href="alterar_funcionario.php?id=<?=$usuario['id_funcionario']; ?>" class="action-btn edit-btn ">
+                                <a href="alterar_funcionario.php?id=<?=htmlspecialchars($usuario['id_funcionario'])?>" class="action-btn edit-btn ">
                                     <a href="excluir_funcionario.php?id=<?=$usuario['id_funcionario']; ?>" class="action-btn delete-btn" onclick="return confirm('⚠️ Tem certeza que deseja excluir este funcionário?')">
                                 </td>
                             </tr>
