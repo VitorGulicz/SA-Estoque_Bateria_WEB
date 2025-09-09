@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 try {
     $clientes = $pdo->query("SELECT id_cliente, nome_cliente FROM cliente ORDER BY nome_cliente")->fetchAll(PDO::FETCH_ASSOC);
     $produtos = $pdo->query("
-        SELECT p.id_produto, p.tipo, p.qtde, p.preco, f.id_fornecedor, f.nome_fornecedor
+        SELECT p.id_produto, p.tipo, p.qtde,p.marca ,p.preco, f.id_fornecedor, f.nome_fornecedor
         FROM produto p
         LEFT JOIN fornecedor f ON f.id_fornecedor = p.id_fornecedor
         ORDER BY p.tipo
@@ -130,10 +130,11 @@ try {
             <option 
                 value="<?= $p['id_produto'] ?>"
                 data-qtde="<?= $p['qtde'] ?>"
+                data-marca="<?= $p['marca'] ?>"
                 data-valor="<?= $p['preco'] ?>"
                 data-fornecedor="<?= $p['id_fornecedor'] ?>"
             >
-                <?= htmlspecialchars($p['tipo']) ?> (Estoque: <?= $p['qtde'] ?>)
+                (<?= htmlspecialchars($p['tipo']) ?>) - (Marca: <?= htmlspecialchars($p['marca']) ?>) - (Estoque: <?= $p['qtde'] ?>)
             </option>
         <?php endforeach; ?>
     </select>
