@@ -15,16 +15,27 @@ $usuarios = [];
 if ($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST["busca"])) {
     $busca = trim($_POST["busca"]);
     if(is_numeric($busca)) {
-        $sql = "SELECT * FROM usuario WHERE id_usuario = :busca ORDER BY nome ASC";
+        $sql = "SELECT u.*, p.nome_perfil 
+                FROM usuario u 
+                INNER JOIN perfil p ON u.id_perfil = p.id_perfil 
+                WHERE u.id_usuario = :busca 
+                ORDER BY u.nome ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':busca', $busca, PDO::PARAM_INT);
     } else {
-        $sql = "SELECT * FROM usuario WHERE nome LIKE :busca_nome ORDER BY nome ASC";
+        $sql = "SELECT u.*, p.nome_perfil 
+                FROM usuario u 
+                INNER JOIN perfil p ON u.id_perfil = p.id_perfil 
+                WHERE u.nome LIKE :busca_nome 
+                ORDER BY u.nome ASC";
         $stmt = $pdo->prepare($sql);
         $stmt->bindValue(':busca_nome', "$busca%", PDO::PARAM_STR);
     }
 } else {
-    $sql = "SELECT * FROM usuario ORDER BY nome ASC";
+    $sql = "SELECT u.*, p.nome_perfil 
+            FROM usuario u 
+            INNER JOIN perfil p ON u.id_perfil = p.id_perfil 
+            ORDER BY u.nome ASC";
     $stmt = $pdo->prepare($sql);
 }
 
@@ -63,7 +74,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>ID Perfil</th>
+                        <th>Perfil</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -73,7 +84,8 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?=htmlspecialchars($usuario['id_usuario'])?></td>
                             <td><?=htmlspecialchars($usuario['nome'])?></td>
                             <td><?=htmlspecialchars($usuario['email'])?></td>
-                            <td><?=htmlspecialchars($usuario['id_perfil'])?></td>
+                            <td><?=htmlspecialchars($usuario['nome_perfil'])?></td>
+
                             <td>
                                 <a href="alterar_usuario.php?id=<?=htmlspecialchars($usuario['id_usuario'])?>" class="action-btn edit-btn ">
                                 <a href="excluir_usuario.php?id=<?= htmlspecialchars($usuario['id_usuario']) ?>" class="action-btn delete-btn"  onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
@@ -84,7 +96,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </div>
     <?php else: ?>
-        <p class="no-results">🔋 Nenhum usuário encontrado no sistema Vgm power Pro.</p>
+        <p class="no-results">Nenhum usuário encontrado.</p>
     <?php endif; ?>
 
     <a href="principal.php" class="back-btn">Voltar ao Menu Principal</a>

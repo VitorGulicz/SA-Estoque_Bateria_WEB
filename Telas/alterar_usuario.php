@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         } else {
             $sql = "SELECT * FROM usuario WHERE nome LIKE :busca_nome";
             $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':busca_nome', "%$busca%", PDO::PARAM_STR);
+            $stmt->bindValue(':busca_nome', "$busca%", PDO::PARAM_STR);
         }
         $stmt->execute();
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
