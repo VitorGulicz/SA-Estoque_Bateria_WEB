@@ -1,5 +1,11 @@
 <?php
+session_start(); // Inicia a sessão para controlar login e permissões
 require_once "conexao.php";
+if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
+  echo "<script>alert('Acesso negado!');window.location.href='principal.php';</script>";
+  exit(); // Encerra a execução se o usuário não tiver permissão
+}
+
 
 // KPIs
 $clientes     = $pdo->query("SELECT COUNT(*) AS total FROM cliente")->fetch(PDO::FETCH_ASSOC)['total'];

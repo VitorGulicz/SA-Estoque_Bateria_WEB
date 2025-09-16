@@ -29,16 +29,23 @@ $permissoes = [
         2=>["Cadastrar"=>["cadastro_cliente.php"],
         "Buscar"=>["buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php"],
         "Alterar"=>["alterar_cliente.php","alterar_forncedor.php"],
+        "Menu"=>["principal.php"],
         "Logout"=>["logout.php"]],
     
         3=>["Cadastrar"=>["cadastro_forncedor.php","cadastro_produto.php"],
         "Buscar"=>["buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php"],
         "Alterar"=>["alterar_forncedor.php","alterar_produto.php"],
-        "Excluir"=>["excluir_produto.php"]],
+        "Excluir"=>["excluir_produto.php"],
+        "Menu"=>["principal.php"],
+        "Logout"=>["logout.php"]],
 
-        4=>["Buscar"=>["buscar_produto.php"]],
+        4=>["Buscar"=>["buscar_produto.php"],
+        "Menu"=>["principal.php"],
+        "Logout"=>["logout.php"]],
         
-        5=>["Compra"=>["alterar_compra.php","cadastro_compra.php", "buscar_compras.php"],],
+        5=>["Compra"=>["alterar_compra.php","cadastro_compra.php", "buscar_compras.php"],
+        "Menu"=>["principal.php"],
+        "Logout"=>["logout.php"]],
 ];
 
 //Obtendo as opções disponiveis para o perfil logado
