@@ -65,6 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <option value="2">Secretaria</option>
             <option value="3">Almoxarife</option>
             <option value="4">Cliente</option>
+            <option value="5">Funcionario</option>
         </select>
         
         <button type="submit" class="cadastrar">Cadastrar</button>

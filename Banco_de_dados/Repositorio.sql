@@ -74,7 +74,8 @@ INSERT INTO `perfil` (`id_perfil`, `nome_perfil`) VALUES
 (1, 'Adm'),
 (2, 'Secretaria'),
 (3, 'Almoxarife'),
-(4, 'Cliente');
+(4, 'Cliente'),
+(5, 'Funcionario');
 
 -- --------------------------------------------------------
 -- Tabela `produto`

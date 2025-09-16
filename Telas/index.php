@@ -51,14 +51,27 @@ if($_SERVER["REQUEST_METHOD"] =="POST"){
         <input type="email" id="email" name="email" required>
         </br>
 
-        <label for="email">Senha</label>
+        <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required>
         </br>
+
+    <label>
+        <input type="checkbox" onclick="mostrarSenha()">Mostrar Senha
+    </label>
 
         <button type="submit">Entrar</button>
     </form>
 
     <p><a href="recuperar_senha.php" class="back-btn">Esqueci minha senha</a>
+    
+    <script>
+    function mostrarSenha(){
+        var senha1=document.getElementById("senha");
+        var tipo= senha1.type === "password" ? "text": "password";
+        senha1.type=tipo;
+    }
+    
 
+</script>
 </body>
 </html>

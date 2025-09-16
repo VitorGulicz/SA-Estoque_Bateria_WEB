@@ -36,7 +36,9 @@ $permissoes = [
         "Alterar"=>["alterar_forncedor.php","alterar_produto.php"],
         "Excluir"=>["excluir_produto.php"]],
 
-        4=>["Buscar"=>["buscar_produto.php"],],
+        4=>["Buscar"=>["buscar_produto.php"]],
+        
+        5=>["Compra"=>["alterar_compra.php","cadastro_compra.php", "buscar_compras.php"],],
 ];
 
 //Obtendo as opções disponiveis para o perfil logado

@@ -48,7 +48,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="search-section">
             <form method="POST" action="buscar_funcionario.php" class="search-form">
                 <label for="busca">Buscar por ID ou Nome:</label>
-                <input type="text" id="busca" name="busca" placeholder="Digite o ID ou nome do funcionário..." required>
+                <input type="text" id="busca" name="busca" placeholder="Digite o ID ou nome do funcionário..." >
                 <button type="submit">Buscar</button>
             </form>
         </div>

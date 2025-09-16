@@ -5,7 +5,7 @@ require_once 'menudrop.php'; // Inclui o menu suspenso de navegação
 
 // ======================== VERIFICA PERFIL ======================== //
 // Somente usuários com perfil 1 podem acessar
-if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
+if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1 && $_SESSION['perfil']!=5) {
     echo "<script>alert('Acesso negado!');window.location.href='principal.php';</script>";
     exit();
 }

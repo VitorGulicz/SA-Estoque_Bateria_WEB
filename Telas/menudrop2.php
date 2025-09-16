@@ -37,6 +37,8 @@ $permissoes = [
         4=>["Cadastrar"=>["cadastro_cliente.php"],
         "Buscar"=>["buscar_produto.php"],
         "Alterar"=>["alterar_cliente.php"]],
+
+        5=>["Compra"=>["alterar_compra.php","cadastro_compra.php", "buscar_compras.php"],],
 ];
 
 //Obtendo as opções disponiveis para o perfil logado

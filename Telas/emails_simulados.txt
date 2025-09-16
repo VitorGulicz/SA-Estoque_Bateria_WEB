@@ -16,3 +16,7 @@ Para: ana@empresa.com
 Olá! Sua nova senha temporária é: n8qaJsCo
 
 ----------------------
+Para: admin@admin
+Olá! Sua nova senha temporária é: RoTUdseJ
+
+----------------------

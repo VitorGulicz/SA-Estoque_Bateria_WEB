@@ -4,7 +4,7 @@ require_once 'conexao.php'; // Conexão com o banco de dados
 require_once 'menudrop.php';// Importa o menu de navegação
 
 // Verifica perfil de acesso (apenas perfil 1 tem acesso)
-if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1) {
+if (!isset($_SESSION['perfil']) || $_SESSION['perfil'] != 1 && $_SESSION['perfil']!=5) {
     echo "<script>alert('Acesso negado!');window.location.href='principal.php';</script>";
     exit();
 }
@@ -87,10 +87,7 @@ try {
             padding: 5px;
             border-radius: 4px;
         }
-        .black-select option {
-            background-color: #000;
-            color: #fff;
-        }
+
         .search-input {
             background-color: #000;
             color: #fff;
@@ -147,7 +144,7 @@ try {
 
     <!-- Valor -->
     <label>Valor da Compra:</label>
-    <input type="number" step="0.01" id="vlr_compra" name="vlr_compra" required>
+    <input type="number" step="1" id="vlr_compra" name="vlr_compra" required>
     <br><br>
 
     <!-- Fornecedor -->
@@ -162,7 +159,7 @@ try {
     <br><br>
 
     <!-- Funcionário -->
-    <label>Funcionário:</label><br>
+    <label>Funcionário que está realizando o cadastro:</label><br>
     <input type="text" id="searchFuncionario" class="search-input" placeholder="Pesquisar funcionário...">
     <select name="cod_funcionario" id="cod_funcionario" size="5" required class="black-select select2">
         <?php foreach($funcionarios as $f): ?>
